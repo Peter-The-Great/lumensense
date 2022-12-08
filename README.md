@@ -1,8 +1,8 @@
 # lumensense
 idk what to put here so heres the fortnite default dance in unicode
-
+     
      ⣀⣤
-⠀⠀⠀⠀⣿⠿⣶
+     ⣿⠿⣶
 ⠀⠀⠀⠀⣿⣿⣀
 ⠀⠀⠀⣶⣶⣿⠿⠛⣶
 ⠤⣀⠛⣿⣿⣿⣿⣿⣿⣭⣿⣤
