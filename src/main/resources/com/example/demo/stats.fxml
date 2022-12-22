@@ -11,28 +11,22 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.StatsController">
    <children>
       <AnchorPane prefHeight="620.0" prefWidth="1240.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="75.0">
          <children>
-            <TableView fx:id="tableView" layoutX="14.0" layoutY="74.0" prefHeight="264.0" prefWidth="605.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="630.0" AnchorPane.topAnchor="74.0">
+            <TableView fx:id="tableView" layoutX="5.0" layoutY="66.0" prefHeight="264.0" prefWidth="605.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="630.0" AnchorPane.topAnchor="66.0">
               <columns>
                 <TableColumn fx:id="nameColomn" prefWidth="120.0" text="NAME" />
                 <TableColumn fx:id="idColomn" prefWidth="52.0" text="ID" />
-                  <TableColumn fx:id="statusColomn" prefWidth="107.0" text="STATUS" />
-                  <TableColumn fx:id="triggeredColomn" minWidth="4.0" prefWidth="139.0" text="TIMES TRIGGERED" />
-                  <TableColumn fx:id="uptimeColomn" minWidth="4.0" prefWidth="173.0" text="UPTIME" />
+                  <TableColumn fx:id="statusColomn" prefWidth="130.40000915527344" text="DIRECT ACTIVATIONS" />
+                  <TableColumn fx:id="triggeredColomn" minWidth="4.0" prefWidth="142.4000244140625" text="INDIRECT ACTIVATIONS" />
+                  <TableColumn fx:id="uptimeColomn" minWidth="4.0" prefWidth="149.5999755859375" text="UPTIME" />
               </columns>
             </TableView>
             <Button layoutX="480.0" layoutY="12.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="&lt;" AnchorPane.leftAnchor="480.0" AnchorPane.topAnchor="10.0" />
             <Button layoutX="720.0" layoutY="12.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="&gt;" AnchorPane.rightAnchor="480.0" AnchorPane.topAnchor="10.0" />
-            <Button layoutX="14.0" layoutY="376.0" mnemonicParsing="false" prefHeight="204.0" prefWidth="605.0" text="+" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="5.0">
-               <font>
-                  <Font size="88.0" />
-               </font>
-            </Button>
             <BarChart layoutX="641.0" layoutY="74.0" prefHeight="264.0" prefWidth="594.0" AnchorPane.bottomAnchor="250.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="74.0">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
@@ -42,6 +36,15 @@
               </yAxis>
             </BarChart>
             <DatePicker layoutX="520.0" layoutY="12.0" prefHeight="40.0" prefWidth="200.0" promptText="DATE" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="520.0" AnchorPane.topAnchor="10.0" />
+            <TableView fx:id="tableView1" layoutX="5.0" layoutY="349.0" prefHeight="264.0" prefWidth="605.0">
+               <columns>
+                  <TableColumn fx:id="nameColomn1" prefWidth="120.0" text="NAME" />
+                  <TableColumn fx:id="idColomn1" prefWidth="52.0" text="ID" />
+                  <TableColumn fx:id="statusColomn1" prefWidth="130.40000915527344" text="DIRECT ACTIVATIONS" />
+                  <TableColumn fx:id="triggeredColomn1" minWidth="4.0" prefWidth="146.39996337890625" text="INDIRECT ACTIVATIONS" />
+                  <TableColumn fx:id="uptimeColomn1" minWidth="4.0" prefWidth="144.800048828125" text="TOTAL UPTIME" />
+               </columns>
+            </TableView>
          </children>
       </AnchorPane>
       <Pane prefHeight="55.0" prefWidth="1280.0" style="-fx-background-color: #00008b;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
