@@ -29,8 +29,11 @@ public class StatsController implements Initializable {
 
     @FXML public TableColumn<Stats, String> iActivationsColomn;
 
-    //@FXML public TableColumn<Stats, String> dateColomn;
+
     @FXML public TableColumn<Stats, String> uptimeColomn;
+
+    @FXML public TableColumn<Stats, String> dateColomn;
+
 
 
     public Stage stage;
@@ -68,19 +71,19 @@ public class StatsController implements Initializable {
         dActivationsColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("dActivations"));
         iActivationsColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("iActivations"));
         uptimeColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("uptime"));
-        //dateColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("uptime"));
+        dateColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("date"));
 
         tableView.setItems(getPeople());
     }
     public ObservableList<Stats> getPeople(){
         ObservableList<Stats> people = FXCollections.observableArrayList();
-        people.add(new Stats("001", "001", "003","12:00:04"));
-        people.add(new Stats("002", "002", "003","13:00:04"));
-        people.add(new Stats("003", "003", "003","11:00:35"));
-        people.add(new Stats("004", "005", "003","00:00:00"));
-        people.add(new Stats("005", "006", "003","06:00:49"));
-        people.add(new Stats("006", "007", "003","07:00:23"));
-        people.add(new Stats("007", "008", "003","09:00:23"));
+        people.add(new Stats("001", "001", "003","12:00:04","11-08-2022"));
+        people.add(new Stats("002", "002", "003","13:00:04","11-08-2022"));
+        people.add(new Stats("003", "003", "003","11:00:35","11-08-2022"));
+        people.add(new Stats("004", "005", "003","00:00:00","11-08-2022"));
+        people.add(new Stats("005", "006", "003","06:00:49","11-08-2022"));
+        people.add(new Stats("006", "007", "003","07:00:23","11-08-2022"));
+        people.add(new Stats("007", "008", "003","09:00:23","11-08-2022"));
         return people;
 
     }

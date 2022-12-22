@@ -15,20 +15,7 @@ import java.util.Objects;
 public class HelloApplication extends Application {
 
     public static void main(String[] args) {
-        String namedatabase = "lumensense";
 
-        String url ="jdbc:mysql://128.199.63.27/"+namedatabase+"";
-        String user ="LumensenseJavaApp";
-        String password ="Lumensense#Ln.T(RbbuKpF^.fMgixYd10";
-
-        try {
-            Connection connectdata = DriverManager.getConnection(url, user,password);
-            System.out.println("SUCCES");
-        } catch (SQLException ex) {
-            System.out.println("Error");
-            ex.printStackTrace();
-
-        }
 
         launch(args);
 

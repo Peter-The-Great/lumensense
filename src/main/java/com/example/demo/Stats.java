@@ -3,14 +3,14 @@ package com.example.demo;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Stats {
-    public SimpleStringProperty id, dActivations, iActivations, uptime;
+    public SimpleStringProperty id, dActivations, iActivations, uptime, date;
 
-    public Stats(String id, String dActivations, String iActivations, String uptime) {
+    public Stats(String id, String dActivations, String iActivations,String uptime, String date) {
         this.id = new SimpleStringProperty(id);
         this.dActivations = new  SimpleStringProperty (dActivations);
         this.iActivations = new  SimpleStringProperty (iActivations);
-        //this.triggered = new  SimpleStringProperty (triggered);
         this.uptime =  new  SimpleStringProperty (uptime);
+        this.date = new  SimpleStringProperty (date);
     }
 
     public String getId() {
@@ -48,18 +48,6 @@ public class Stats {
         this.iActivations.set(iActivations);
     }
 
-//   public String getTriggered() {
-//        return triggered.get();
-//    }
-//
-//    public SimpleStringProperty triggeredProperty() {
-//        return triggered;
-//    }
-//
-//    public void setTriggered(String triggered) {
-//        this.triggered.set(triggered);
-//    }
-
     public String getUptime() {
         return uptime.get();
     }
@@ -70,6 +58,17 @@ public class Stats {
 
     public void setUptime(String uptime) {
         this.uptime.set(uptime);
+    }
+    public String getDate() {
+        return date.get();
+    }
+
+    public SimpleStringProperty dateProperty() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date.set(date);
     }
 
 }

@@ -22,6 +22,7 @@
                   <TableColumn fx:id="dActivationsColomn" prefWidth="154.39996337890625" text="DIRECT ACTIVATIONS" />
                   <TableColumn fx:id="iActivationsColomn" minWidth="4.0" prefWidth="148.8000030517578" text="INDIRECT ACTIVATIONS" />
                   <TableColumn fx:id="uptimeColomn" minWidth="4.0" prefWidth="121.60003662109375" text="UPTIME" />
+                  <TableColumn fx:id="dateColomn" prefWidth="126.39998779296877" text="DATE" />
               </columns>
             </TableView>
             <Button layoutX="480.0" layoutY="12.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="&lt;" AnchorPane.leftAnchor="480.0" AnchorPane.topAnchor="10.0" />
@@ -41,7 +42,6 @@
                   <TableColumn prefWidth="154.39996337890625" text="DIRECT ACTIVATIONS" />
                   <TableColumn minWidth="4.0" prefWidth="148.8000030517578" text="INDIRECT ACTIVATIONS" />
                   <TableColumn minWidth="4.0" prefWidth="121.60003662109375" text="TOTAL UPTIME" />
-                  <TableColumn prefWidth="126.39998779296877" text="DATE" />
                </columns>
             </TableView>
          </children>
