@@ -23,10 +23,13 @@ public class StatsController implements Initializable {
 
     //Table
     @FXML public TableView<Stats> tableView;
-    @FXML public TableColumn<Stats, String> nameColomn;
     @FXML public TableColumn<Stats, String> idColomn;
-    @FXML public TableColumn<Stats, String> statusColomn;
-    @FXML public TableColumn<Stats, String> triggeredColomn;
+
+    @FXML public TableColumn<Stats, String> dActivationsColomn;
+
+    @FXML public TableColumn<Stats, String> iActivationsColomn;
+
+    //@FXML public TableColumn<Stats, String> dateColomn;
     @FXML public TableColumn<Stats, String> uptimeColomn;
 
 
@@ -61,23 +64,23 @@ public class StatsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("name"));
         idColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("id"));
-        statusColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("status"));
-        triggeredColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("triggered"));
+        dActivationsColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("dActivations"));
+        iActivationsColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("iActivations"));
         uptimeColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("uptime"));
+        //dateColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("uptime"));
 
         tableView.setItems(getPeople());
     }
     public ObservableList<Stats> getPeople(){
         ObservableList<Stats> people = FXCollections.observableArrayList();
-        people.add(new Stats("Light 1", "001", "UP","293", "12:00:04"));
-        people.add(new Stats("Light 2", "002", "UP","298", "13:00:04"));
-        people.add(new Stats("Light 3", "003", "UP","278", "11:00:35"));
-        people.add(new Stats("Light 4", "005", "Down","0", "00:00:00"));
-        people.add(new Stats("Light 5", "006", "UP","109", "06:00:49"));
-        people.add(new Stats("Light 6", "007", "UP","180", "07:00:23"));
-        people.add(new Stats("Light 7", "008", "UP","170", "09:00:23"));
+        people.add(new Stats("001", "001", "003","12:00:04"));
+        people.add(new Stats("002", "002", "003","13:00:04"));
+        people.add(new Stats("003", "003", "003","11:00:35"));
+        people.add(new Stats("004", "005", "003","00:00:00"));
+        people.add(new Stats("005", "006", "003","06:00:49"));
+        people.add(new Stats("006", "007", "003","07:00:23"));
+        people.add(new Stats("007", "008", "003","09:00:23"));
         return people;
 
     }

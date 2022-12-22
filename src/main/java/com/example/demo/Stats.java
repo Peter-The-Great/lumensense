@@ -3,26 +3,14 @@ package com.example.demo;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Stats {
-    public SimpleStringProperty name, id, status, triggered,uptime;
+    public SimpleStringProperty id, dActivations, iActivations, uptime;
 
-    public Stats(String name, String id, String status, String triggered, String uptime) {
-        this.name = new SimpleStringProperty(name);
-        this.id = new  SimpleStringProperty (id);
-        this.status = new  SimpleStringProperty (status);
-        this.triggered = new  SimpleStringProperty (triggered);
+    public Stats(String id, String dActivations, String iActivations, String uptime) {
+        this.id = new SimpleStringProperty(id);
+        this.dActivations = new  SimpleStringProperty (dActivations);
+        this.iActivations = new  SimpleStringProperty (iActivations);
+        //this.triggered = new  SimpleStringProperty (triggered);
         this.uptime =  new  SimpleStringProperty (uptime);
-    }
-
-    public String getName() {
-        return name.get();
-    }
-
-    public SimpleStringProperty nameProperty() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name.set(name);
     }
 
     public String getId() {
@@ -33,33 +21,44 @@ public class Stats {
         return id;
     }
 
-    public void setId(String id) {
+    public void setID(String id) {
         this.id.set(id);
     }
 
-    public String getStatus() {
-        return status.get();
+    public String getdActivations() {        return dActivations.get();
     }
 
-    public SimpleStringProperty statusProperty() {
-        return status;
+    public SimpleStringProperty dActivationsProperty() {
+        return dActivations;
     }
 
-    public void setStatus(String status) {
-        this.status.set(status);
+    public void setdActivations(String dActivations) {
+        this.dActivations.set(dActivations);
     }
 
-    public String getTriggered() {
-        return triggered.get();
+    public String getiActivations() {
+        return iActivations.get();
     }
 
-    public SimpleStringProperty triggeredProperty() {
-        return triggered;
+    public SimpleStringProperty iActivationsProperty() {
+        return iActivations;
     }
 
-    public void setTriggered(String triggered) {
-        this.triggered.set(triggered);
+    public void setiActivations(String iActivations) {
+        this.iActivations.set(iActivations);
     }
+
+//   public String getTriggered() {
+//        return triggered.get();
+//    }
+//
+//    public SimpleStringProperty triggeredProperty() {
+//        return triggered;
+//    }
+//
+//    public void setTriggered(String triggered) {
+//        this.triggered.set(triggered);
+//    }
 
     public String getUptime() {
         return uptime.get();
