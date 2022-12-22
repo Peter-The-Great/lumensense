@@ -30,7 +30,7 @@ public class HelloController  {
     public Parent root;
 
     public void switchToLight(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -53,13 +53,13 @@ public class HelloController  {
         stage.show();
 
     }
-    public void switchToTest(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("test.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+//    public void switchToTest(ActionEvent event) throws IOException {
+//        root = FXMLLoader.load(getClass().getResource("test.fxml"));
+//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
 
 

@@ -10,13 +10,13 @@
    <children>
       <TableView fx:id="tableview2" layoutX="73.0" layoutY="81.0" prefHeight="338.0" prefWidth="619.0">
         <columns>
-          <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="75.0" text="ID" />
             <TableColumn minWidth="0.0" prefWidth="0.0" text="INDIRECT ACTIVATIONS" />
-            <TableColumn fx:id="da" prefWidth="151.20001220703125" text="DIRECT ACTIVATIONS" />
+            <TableColumn prefWidth="151.20001220703125" text="DIRECT ACTIVATIONS" />
             <TableColumn minWidth="0.0" prefWidth="0.0" text="Column X" />
-            <TableColumn fx:id="ia" prefWidth="144.79998779296875" text="INDIRECT ACTIVATIONS" />
-            <TableColumn fx:id="ut" prefWidth="141.60003662109375" text="UPTIME" />
-            <TableColumn fx:id="date" prefWidth="102.39996337890625" text="DATE" />
+            <TableColumn prefWidth="144.79998779296875" text="INDIRECT ACTIVATIONS" />
+            <TableColumn prefWidth="141.60003662109375" text="UPTIME" />
+            <TableColumn prefWidth="102.39996337890625" text="DATE" />
         </columns>
       </TableView>
       <Button layoutX="354.0" layoutY="27.0" mnemonicParsing="false" text="Vernieuw data" />

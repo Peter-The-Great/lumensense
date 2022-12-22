@@ -18,11 +18,11 @@
          <children>
             <TableView fx:id="tableView" layoutX="5.0" layoutY="66.0" prefHeight="264.0" prefWidth="605.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="630.0" AnchorPane.topAnchor="66.0">
               <columns>
-                <TableColumn fx:id="idColomn" prefWidth="52.0" text="ID" />
-                  <TableColumn fx:id="dActivationsColomn" prefWidth="154.39996337890625" text="DIRECT ACTIVATIONS" />
-                  <TableColumn fx:id="iActivationsColomn" minWidth="4.0" prefWidth="148.8000030517578" text="INDIRECT ACTIVATIONS" />
-                  <TableColumn fx:id="uptimeColomn" minWidth="4.0" prefWidth="121.60003662109375" text="UPTIME" />
-                  <TableColumn fx:id="dateColomn" prefWidth="126.39998779296877" text="DATE" />
+                <TableColumn fx:id="id" prefWidth="52.0" text="ID" />
+                  <TableColumn fx:id="da" prefWidth="154.39996337890625" text="DIRECT ACTIVATIONS" />
+                  <TableColumn fx:id="ia" minWidth="4.0" prefWidth="148.8000030517578" text="INDIRECT ACTIVATIONS" />
+                  <TableColumn fx:id="ut" minWidth="4.0" prefWidth="121.60003662109375" text="UPTIME" />
+                  <TableColumn fx:id="date" prefWidth="126.39998779296877" text="DATE" />
               </columns>
             </TableView>
             <Button layoutX="480.0" layoutY="12.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="&lt;" AnchorPane.leftAnchor="480.0" AnchorPane.topAnchor="10.0" />

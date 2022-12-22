@@ -13,19 +13,23 @@ public class ConnectionDB {
     private String user = "LumensenseJavaApp";
     private String password = "Lumensense#Ln.T(RbbuKpF^.fMgixYd10";
 
-    public Connection fileconnection() {
+    public Connection getConnection() {
         try {
-            Class.forName("org.mysql.Driver");
-            Connection connectdata = DriverManager.getConnection(url, user, password);
+//            Class.forName("org.h2.Driver");
+            Connection conn = DriverManager.getConnection(url, user, password);
             System.out.println("SUCCES");
+            return conn;
         } catch (SQLException ex) {
             System.out.println("Error");
             ex.printStackTrace();
 
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Error");
-            ex.printStackTrace();
+//        } catch (ClassNotFoundException ex) {
+//           System.out.println("Error");
+//            ex.printStackTrace();
+//        }
+
         }
+        System.out.println("Error connection db AFTER CATCH");
         return null;
     }
 }

@@ -1,90 +1,81 @@
 package com.example.demo;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.Initializable;
+
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.Time;
+import java.util.Date;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
+
+import javax.xml.transform.Result;
+
 
 public class StatsController implements Initializable {
 
-    //Table
     @FXML public TableView<Stats> tableView;
-    @FXML public TableColumn<Stats, String> idColomn;
+    @FXML public TableColumn<Stats, Integer> id;
 
-    @FXML public TableColumn<Stats, String> dActivationsColomn;
+    @FXML public TableColumn<Stats, Integer> da;
 
-    @FXML public TableColumn<Stats, String> iActivationsColomn;
-
-
-    @FXML public TableColumn<Stats, String> uptimeColomn;
-
-    @FXML public TableColumn<Stats, String> dateColomn;
+    @FXML public TableColumn<Stats, Integer> ia;
 
 
+    @FXML public TableColumn<Stats, Time> ut;
 
-    public Stage stage;
-    public Scene scene;
-    public Parent root;
+    @FXML public TableColumn<Stats, Date> date;
 
-    public void switchToLight(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-
-    public void switchToStats(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("stats.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void switchToLogs(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("logs.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
-
+    ObservableList<Stats> listview = FXCollections.observableArrayList();
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        idColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("id"));
-        dActivationsColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("dActivations"));
-        iActivationsColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("iActivations"));
-        uptimeColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("uptime"));
-        dateColomn.setCellValueFactory(new PropertyValueFactory<Stats, String>("date"));
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("test start testcontroller");
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        da.setCellValueFactory(new PropertyValueFactory<>("da"));
+        ia.setCellValueFactory(new PropertyValueFactory<>("ia"));
+        ut.setCellValueFactory(new PropertyValueFactory<>("ut"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-        tableView.setItems(getPeople());
+        try {
+            ConnectionDB db = new ConnectionDB();
+            Connection conn = db.getConnection();
+
+            String query        = "SELECT * FROM daily_lamp";
+            Statement statement = conn.createStatement();
+            ResultSet result    = statement.executeQuery(query);
+
+            while (result.next()){
+                System.out.println(result);
+                listview.add(new Stats(
+                        result.getInt("lamp_id"),
+                        result.getInt("direct_activations"),
+                        result.getInt("indirect_activations"),
+                        result.getTime("uptime"),
+                        result.getDate("date")
+                ));
+            }
+            tableView.setItems(listview);
+        } catch (Exception e){
+            System.out.println("Database error: " + e.getMessage());
+        }
     }
-    public ObservableList<Stats> getPeople(){
-        ObservableList<Stats> people = FXCollections.observableArrayList();
-        people.add(new Stats("001", "001", "003","12:00:04","11-08-2022"));
-        people.add(new Stats("002", "002", "003","13:00:04","11-08-2022"));
-        people.add(new Stats("003", "003", "003","11:00:35","11-08-2022"));
-        people.add(new Stats("004", "005", "003","00:00:00","11-08-2022"));
-        people.add(new Stats("005", "006", "003","06:00:49","11-08-2022"));
-        people.add(new Stats("006", "007", "003","07:00:23","11-08-2022"));
-        people.add(new Stats("007", "008", "003","09:00:23","11-08-2022"));
-        return people;
 
+
+    public void switchToStats(ActionEvent event) {
+    }
+
+    public void switchToLogs(ActionEvent event) {
+    }
+
+    public void switchToLight(ActionEvent event) {
     }
 }
