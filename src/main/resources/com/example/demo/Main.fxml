@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -185,7 +186,9 @@
             <Button layoutX="66.0" mnemonicParsing="false" onAction="#switchToLight" prefHeight="55.0" prefWidth="60.0" text="Lights" />
             <Button layoutX="126.0" mnemonicParsing="false" onAction="#switchToLogs" prefHeight="55.0" prefWidth="60.0" text="Logs" />
             <Button layoutX="186.0" mnemonicParsing="false" onAction="#switchToStats" prefHeight="55.0" prefWidth="60.0" text="Data" />
+            <Button layoutX="281.0" layoutY="17.0" mnemonicParsing="false" onAction="#switchToTest" text="Button" />
          </children>
       </Pane>
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
