@@ -1,18 +1,14 @@
 package com.example.demo;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Objects;
 
-public class HelloApplication extends Application {
+public class Main extends Application {
 
     public static void main(String[] args) {
 
