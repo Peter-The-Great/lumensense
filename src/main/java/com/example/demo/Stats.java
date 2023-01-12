@@ -5,23 +5,24 @@ import java.sql.Time;
 
 public class Stats {
 
-    int id,da,ia;
-    Time ut;
+    int da,ia;
+    String id;
+
     Date date;
 
-    public Stats(int id, int da, int ia, Time ut, Date date) {
+    public Stats(String id, int da, int ia, Date date) {
         this.id = id;
         this.da = da;
         this.ia = ia;
-        this.ut = ut;
+
         this.date = date;
     }
 
-    public int getId() {
+    public String  getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -41,13 +42,7 @@ public class Stats {
         this.ia = (int) ia;
     }
 
-    public Time getUt() {
-        return ut;
-    }
 
-    public void setUt(Time ut) {
-        this.ut = (Time) ut;
-    }
 
     public Date getDate() {
         return date;

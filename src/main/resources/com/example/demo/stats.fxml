@@ -27,9 +27,9 @@
             </TableView>
             <Button layoutX="480.0" layoutY="12.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="&lt;" AnchorPane.leftAnchor="480.0" AnchorPane.topAnchor="10.0" />
             <Button layoutX="720.0" layoutY="12.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="&gt;" AnchorPane.rightAnchor="480.0" AnchorPane.topAnchor="10.0" />
-            <BarChart layoutX="641.0" layoutY="74.0" prefHeight="264.0" prefWidth="594.0" AnchorPane.bottomAnchor="250.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="74.0">
+            <BarChart fx:id="idBar" barGap="1.0" categoryGap="1.0" layoutX="645.0" layoutY="154.0" prefHeight="393.0" prefWidth="594.0" title="Times Triggered" AnchorPane.bottomAnchor="73.0" AnchorPane.rightAnchor="0.599999999999909" AnchorPane.topAnchor="154.0">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <CategoryAxis label="Light ID" side="BOTTOM" />
               </xAxis>
               <yAxis>
                 <NumberAxis side="LEFT" />
@@ -38,19 +38,20 @@
             <DatePicker layoutX="520.0" layoutY="12.0" prefHeight="40.0" prefWidth="200.0" promptText="DATE" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="520.0" AnchorPane.topAnchor="10.0" />
             <TableView fx:id="tableView1" layoutX="5.0" layoutY="350.0" prefHeight="264.0" prefWidth="605.0">
                <columns>
-                  <TableColumn prefWidth="52.0" text="ID" />
-                  <TableColumn prefWidth="154.39996337890625" text="DIRECT ACTIVATIONS" />
-                  <TableColumn minWidth="4.0" prefWidth="148.8000030517578" text="INDIRECT ACTIVATIONS" />
-                  <TableColumn minWidth="4.0" prefWidth="121.60003662109375" text="TOTAL UPTIME" />
+                  <TableColumn fx:id="id1" prefWidth="52.0" text="ID" />
+                  <TableColumn fx:id="directA" prefWidth="154.39996337890625" text="DIRECT ACTIVATIONS" />
+                  <TableColumn fx:id="indirectA" minWidth="4.0" prefWidth="148.8000030517578" text="INDIRECT ACTIVATIONS" />
+                  <TableColumn fx:id="totalU" minWidth="4.0" prefWidth="121.60003662109375" text="TOTAL UPTIME" />
                </columns>
             </TableView>
+            <Button fx:id="refreshData" layoutX="901.0" layoutY="66.0" mnemonicParsing="false" onAction="#loadData" text="Refresh data" />
          </children>
       </AnchorPane>
       <Pane prefHeight="55.0" prefWidth="1280.0" style="-fx-background-color: #00008b;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button layoutX="66.0" mnemonicParsing="false" onAction="#switchToLight" prefHeight="55.0" prefWidth="60.0" text="Lights" />
             <Button layoutX="126.0" mnemonicParsing="false" onAction="#switchToLogs" prefHeight="55.0" prefWidth="60.0" text="Logs" />
-             <Button layoutX="186.0" mnemonicParsing="false"  prefHeight="55.0" prefWidth="60.0" text="Data" />
+             <Button layoutX="186.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="60.0" text="Data" />
             <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../img/logo.png" />
