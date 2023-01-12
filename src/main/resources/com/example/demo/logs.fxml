@@ -18,20 +18,16 @@
          <children>
             <Pane layoutX="25.0" layoutY="90.0" prefHeight="500.0" prefWidth="375.0" style="-fx-background-color: #FFFFFF;" />
             <Pane layoutX="405.0" layoutY="90.0" prefHeight="500.0" prefWidth="375.0" style="-fx-background-color: #FF0000;" />
-            <Pane layoutX="785.0" layoutY="90.0" prefHeight="500.0" prefWidth="375.0" style="-fx-background-color: #000000; -fx-border-color: #FFFFFF;">
-               <children>
-                  <TextField layoutY="473.0" prefHeight="27.0" prefWidth="375.0" promptText="Enter command here." style="-fx-background-color: #000000; -fx-border-color: #FFFFFF;" />
-               </children>
-            </Pane>
+            <Pane layoutX="785.0" layoutY="90.0" prefHeight="500.0" prefWidth="375.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;" />
             <Polyline fill="WHITE" layoutX="206.0" layoutY="38.0" points="-24.400009155273438, 1.2000045776367188, 0.1999969482421875, 49.0, -181.1999969482422, 49.0, -156.40000915527344, 1.2000045776367188" strokeType="INSIDE" />
             <Polyline fill="RED" layoutX="586.0" layoutY="38.0" points="-25.20001220703125, 1.2000045776367188, 0.1999969482421875, 49.0, -181.1999969482422, 49.0, -156.39996337890625, 1.2000045776367188" strokeType="INSIDE" />
-            <Polyline fill="BLACK" layoutX="965.0" layoutY="37.0" points="-24.20001220703125, 1.2000045776367188, 0.1999969482421875, 49.0, -181.1999969482422, 49.0, -156.99993896484375, 1.2000045776367188" stroke="WHITE" strokeType="INSIDE" />
+            <Polyline fill="WHITE" layoutX="965.0" layoutY="37.0" points="-24.20001220703125, 1.2000045776367188, 0.1999969482421875, 49.0, -181.1999969482422, 49.0, -156.99993896484375, 1.2000045776367188" stroke="WHITE" strokeType="INSIDE" />
             <Text layoutX="53.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="General" wrappingWidth="82.79177856445312">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="814.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADMIN" wrappingWidth="82.79177856445312">
+            <Text layoutX="818.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NETWERK" wrappingWidth="112.39169311523438">
                <font>
                   <Font size="24.0" />
                </font>
