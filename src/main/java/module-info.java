@@ -4,6 +4,7 @@ module com.example.demo {
     requires java.sql;
     requires java.desktop;
     requires bcrypt;
+    requires LumenSerial;
 
 
     opens com.example.demo to javafx.fxml;
