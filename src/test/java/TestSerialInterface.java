@@ -13,8 +13,8 @@ public class TestSerialInterface {
             testReadActivators(lumenBit);
 
             testSetTime(lumenBit);
-//            testSetUUID(lumenBit);
-//            testSetActivators(lumenBit);
+            testSetUUID(lumenBit);
+            testSetActivators(lumenBit);
         } else {
             System.out.println("Failed to connect to device");
         }
@@ -84,7 +84,7 @@ public class TestSerialInterface {
         Response response = null;
 
         System.out.println("\n\nTest UUID\n\n");
-        response = lumenBit.uuid.set("TEST");
+        response = lumenBit.uuid.set("RED");
         System.out.println(response.toString());
 
         return true;
@@ -94,7 +94,7 @@ public class TestSerialInterface {
         Response response = null;
 
         System.out.println("\n\nTest Activators\n\n");
-        response = lumenBit.activators.set(new String[]{"TEST"});
+        response = lumenBit.activators.set(new String[]{"GREEN", "BLACK"});
         System.out.println(response.toString());
 
         return true;
