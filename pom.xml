@@ -24,7 +24,7 @@
         <dependency>
             <groupId>org.lumen</groupId>
             <artifactId>LumenSerial</artifactId>
-            <version>1.1</version>
+            <version>1.2</version>
         </dependency>
         <dependency>
             <!-- jsoup HTML parser library @ https://jsoup.org/ -->
@@ -119,10 +119,10 @@
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
-                            <file>${basedir}/libs/LumenSerial-1.1.jar</file>
+                            <file>${basedir}/libs/LumenSerial-1.2.jar</file>
                             <groupId>org.lumen</groupId>
                             <artifactId>LumenSerial</artifactId>
-                            <version>1.1</version>
+                            <version>1.2</version>
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
