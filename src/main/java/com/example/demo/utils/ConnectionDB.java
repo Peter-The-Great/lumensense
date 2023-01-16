@@ -56,5 +56,24 @@ public class ConnectionDB {
             return update("INSERT INTO log (content, type, lamp_id) VALUES ('" + content + "', '" + type + "', '" + lamp_id + "')");
         }
     }
+
+    public boolean updateLampStatus(String status, String lamp_id) {
+        // check if log exists
+        try{
+            ResultSet rs = select("SELECT * FROM lamp WHERE lamp_id = '" + lamp_id + "'");
+            if (rs != null && rs.next()) {
+                System.out.println("Entry found updating...");
+                // update log
+                return update("UPDATE lamp SET status = '" + status +  "' WHERE lamp_id = '" + lamp_id + "'");
+            } else {
+                System.out.println("Entry not found inserting");
+                // insert log
+                return update("INSERT INTO lamp (status, lamp_id) VALUES ('" + status + "','" + lamp_id + "')");
+            }
+        } catch (SQLException e) {
+            System.out.printf("SQL - Error: " + e.getMessage());
+        }
+        return false;
+    }
 }
 
