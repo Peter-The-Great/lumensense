@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class LogUtils {
-    public HashMap<String, String> getLogs() {
+    public HashMap<String, String> getLogs() throws RuntimeException {
         HashMap<String, ArrayList<String>> logList = getLogsList();
         HashMap<String, String> logs = new HashMap<>();
         for (String type : logList.keySet()) {
@@ -24,11 +24,10 @@ public class LogUtils {
         return logs;
     }
 
-    public HashMap<String, ArrayList<String>> getLogsList() {
+    public HashMap<String, ArrayList<String>> getLogsList() throws RuntimeException{
         ArrayList<String> logLines = getLogFileLines();
 
         HashMap<String, ArrayList<String>> logs = new HashMap<>();
-        assert logLines != null;
         for (String line : logLines) {
             // check if string contains illegal character
             if (line.contains("�")) {
@@ -45,31 +44,28 @@ public class LogUtils {
         return logs;
     }
 
-    private ArrayList<String> getLogFileLines() {
+    private ArrayList<String> getLogFileLines() throws RuntimeException {
         File logFile = getLogFileFromMicrobit();
         ArrayList<String> logFileLines = new ArrayList<>();
         try {
-            if (logFile != null) {
-                String logFileContents = new String(Files.readAllBytes(Path.of(logFile.getAbsolutePath())));
-                String[] logFileLinesArray = logFileContents.split("\n");
-                logFileLines.addAll(Arrays.asList(logFileLinesArray));
+            String logFileContents = new String(Files.readAllBytes(Path.of(logFile.getAbsolutePath())));
+            String[] logFileLinesArray = logFileContents.split("\n");
+            logFileLines.addAll(Arrays.asList(logFileLinesArray));
 
-                for (int i = 0; i < 4; i++) {
-                    logFileLines.remove(0);
-                }
-                logFileLines.remove(logFileLines.size() - 1);
-
-                return logFileLines;
+            for (int i = 0; i < 4; i++) {
+                logFileLines.remove(0);
             }
+            logFileLines.remove(logFileLines.size() - 1);
+
+            return logFileLines;
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        return null;
     }
 
-    private File getLogFileFromMicrobit() {
+    private File getLogFileFromMicrobit() throws RuntimeException{
         File[] paths;
         FileSystemView fsv = FileSystemView.getFileSystemView();
 
@@ -91,6 +87,7 @@ public class LogUtils {
             }
 
         }
-        return null;
+
+        throw new RuntimeException("No log file found");
     }
 }

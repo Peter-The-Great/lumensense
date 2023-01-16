@@ -23,39 +23,26 @@ public class ConnectionDB {
         }
     }
 
-    public boolean update(String query) {
-        try{
-            Statement stmt = this.conn.createStatement();
-            stmt.executeUpdate(query);
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public ResultSet select(String query) {
+    public boolean updateLog(String content, String type) {
         try {
-            Statement stmt = this.conn.createStatement();
-            return stmt.executeQuery(query);
-        } catch (Exception e) {
-            System.out.println("Error in select query");
-            e.printStackTrace();
-            return null;
-        }
-    }
+            // check if log already exists
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM log WHERE type = ?");
+            stmt.setString(1, type);
+            ResultSet rs = stmt.executeQuery();
 
-    public boolean updateLog(String content, String type, String lamp_id) {
-        // check if log exists
-        try {
-            ResultSet rs = select("SELECT * FROM log WHERE type = '" + type + "' AND lamp_id = '" + lamp_id + "'");
-            if (rs != null && rs.next()) {
+            if (rs.next()) {
                 // update log
-                return update("UPDATE log SET content = '" + content + "' WHERE type = '" + type + "' AND lamp_id = '" + lamp_id + "'");
+                stmt = this.conn.prepareStatement("UPDATE log SET content = ?, updated = now() WHERE type = ?");
             } else {
                 // insert log
-                return update("INSERT INTO log (content, type, lamp_id) VALUES ('" + content + "', '" + type + "', '" + lamp_id + "')");
+                stmt = this.conn.prepareStatement("INSERT INTO log (content, type, updated) VALUES (?, ?, now())");
             }
+
+            stmt.setString(1, content);
+            stmt.setString(2, type);
+            stmt.executeUpdate();
+
+            return true;
         } catch (SQLException e) {
             System.out.printf("SQL - Error: " + e.getMessage());
         }
@@ -64,16 +51,54 @@ public class ConnectionDB {
     }
 
     public boolean updateLampStatus(String status, String lamp_id) {
-        // check if log exists
         try {
-            ResultSet rs = select("SELECT * FROM lamp WHERE lamp_id = '" + lamp_id + "'");
-            if (rs != null && rs.next()) {
+            // fetch lamp by id to check if it exists
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM lamp WHERE lamp_id = ?");
+            stmt.setString(1, lamp_id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
                 // update log
-                return update("UPDATE lamp SET status = '" + status +  "' WHERE lamp_id = '" + lamp_id + "'");
+                stmt = this.conn.prepareStatement("UPDATE lamp SET status = ? WHERE lamp_id = ?");
             } else {
                 // insert log
-                return update("INSERT INTO lamp (status, lamp_id) VALUES ('" + status + "','" + lamp_id + "')");
+                stmt = this.conn.prepareStatement("INSERT INTO lamp (status, lamp_id) VALUES (?, ?)");
             }
+
+            stmt.setString(1, status);
+            stmt.setString(2, lamp_id);
+            stmt.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            System.out.printf("SQL - Error: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean updateActivations(String lamp_id, String directs, String indirects) {
+
+        try {
+            // check if daily_lamp exists for lamp_id
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM daily_lamp WHERE lamp_id = ? AND date = CURDATE()");
+            stmt.setString(1, lamp_id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                // update log
+                stmt = this.conn.prepareStatement("UPDATE daily_lamp SET direct_activations = ?, indirect_activations = ? WHERE lamp_id = ? AND date = CURDATE()");
+            } else {
+                // insert log
+                stmt = this.conn.prepareStatement("INSERT INTO daily_lamp (direct_activations, indirect_activations, lamp_id, date) VALUES (?, ?, ?, CURDATE())");
+            }
+
+            stmt.setString(1, directs);
+            stmt.setString(2, indirects);
+            stmt.setString(3, lamp_id);
+
+            stmt.executeUpdate();
+
+            return true;
         } catch (SQLException e) {
             System.out.printf("SQL - Error: " + e.getMessage());
         }

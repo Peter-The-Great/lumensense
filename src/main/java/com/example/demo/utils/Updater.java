@@ -4,6 +4,7 @@ import LumenSerial.LumenBitInterface;
 import LumenSerial.Model.Response;
 
 import java.sql.Connection;
+import java.util.HashMap;
 
 public class Updater {
     private ConnectionDB db;
@@ -18,9 +19,19 @@ public class Updater {
         this.logUtils = new LogUtils();
     }
 
-    public void update() {
+    public void updateFast() {
         if (this.lumenBit.connect()) {
             this.updateStatus();
+            this.updateActivations();
+        } else {
+            System.out.println("No connection to device");
+        }
+    }
+
+    public void updateSlow() {
+        if (this.lumenBit.connect()) {
+            this.updateTime();
+            this.updateLogs();
         } else {
             System.out.println("No connection to device");
         }
@@ -28,7 +39,6 @@ public class Updater {
 
     public void updateStatus() {
         Response response = this.lumenBit.status.read();
-        boolean result = false;
 
         if (response.getStatus().equals("200")) {
             String lamps = (String) response.getData();
@@ -36,10 +46,50 @@ public class Updater {
                 String[] statusSplit = lamp.split("=");
                 String lampId = statusSplit[0];
                 String status = statusSplit[1].equals("1") ? "true" : "false";
-                result = this.db.updateLampStatus(status, lampId);
+                boolean result = this.db.updateLampStatus(status, lampId);
+                System.out.println("Update status: " + (result ? "success" : "failed"));
             }
+        } else {
+            System.out.println("Update status failed, incorrect response: " + response.getMessage());
         }
-        System.out.println("Update status: " + (result ? "success" : "failed"));
+    }
+
+    public void updateActivations() {
+        Response response = this.lumenBit.activations.read();
+
+        if (response.getStatus().equals("200")) {
+            String lampsActivations = (String) response.getData();
+            for (String lampActivation : lampsActivations.split(",")) {
+                String[] lampActivationSplit = lampActivation.split("=");
+                String   lamp_id = lampActivationSplit[0];
+
+                String[] activationSplit = lampActivationSplit[1].split("\\|");
+                String   directs         = activationSplit[0];
+                String   indirects       = activationSplit[1];
+
+                boolean result = this.db.updateActivations(lamp_id, directs, indirects);
+                System.out.println("Update activation: " + (result ? "success" : "failed"));
+            }
+        } else {
+            System.out.println("Update activations failed, incorrect response: " + response.getMessage());
+        }
+    }
+
+    public void updateLogs() {
+        try {
+            HashMap<String, String> logs = this.logUtils.getLogs();
+            for (String type : logs.keySet()) {
+                String content = logs.get(type);
+                boolean result = this.db.updateLog(content, type);
+                System.out.printf("Update log (%s): %s\n", type, (result ? "success" : "failed"));
+            }
+        } catch (RuntimeException e) {
+            System.out.println("Update logs failed: " + e.getMessage());
+        }
+    }
+
+    public void updateTime() {
+        this.lumenBit.time.set();
     }
 
     public String getUUID() {
