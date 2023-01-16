@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class LogUtils {
-    public static HashMap<String, String> getLogs() {
+    public HashMap<String, String> getLogs() {
         HashMap<String, ArrayList<String>> logList = getLogsList();
         HashMap<String, String> logs = new HashMap<>();
         for (String type : logList.keySet()) {
@@ -24,7 +24,7 @@ public class LogUtils {
         return logs;
     }
 
-    public static HashMap<String, ArrayList<String>> getLogsList() {
+    public HashMap<String, ArrayList<String>> getLogsList() {
         ArrayList<String> logLines = getLogFileLines();
 
         HashMap<String, ArrayList<String>> logs = new HashMap<>();
@@ -45,7 +45,7 @@ public class LogUtils {
         return logs;
     }
 
-    private static ArrayList<String> getLogFileLines() {
+    private ArrayList<String> getLogFileLines() {
         File logFile = getLogFileFromMicrobit();
         ArrayList<String> logFileLines = new ArrayList<>();
         try {
@@ -69,7 +69,7 @@ public class LogUtils {
         return null;
     }
 
-    private static File getLogFileFromMicrobit() {
+    private File getLogFileFromMicrobit() {
         File[] paths;
         FileSystemView fsv = FileSystemView.getFileSystemView();
 
