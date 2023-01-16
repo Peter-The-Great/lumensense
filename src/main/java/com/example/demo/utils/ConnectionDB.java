@@ -4,9 +4,10 @@ import java.sql.*;
 
 public class ConnectionDB {
 
-    private static Connection conn;
+    public Connection conn = null;
 
-    public Connection getConnection() {
+    // main method to test the connection
+    public ConnectionDB()  {
         try {
             String dbname   = "lumensense";
             String url      = "jdbc:mysql://128.199.63.27/" + dbname + "";
@@ -15,25 +16,16 @@ public class ConnectionDB {
 
             Connection connection = DriverManager.getConnection(url, user, password);
             System.out.println("SUCCES");
-            conn = connection;
-            return connection;
+            this.conn = connection;
         } catch (SQLException ex) {
             System.out.println("Error");
             ex.printStackTrace();
-
-//        } catch (ClassNotFoundException ex) {
-//           System.out.println("Error");
-//            ex.printStackTrace();
-//        }
-
         }
-        System.out.println("Error connection db AFTER CATCH");
-        return null;
     }
 
-    public static boolean update(String query) {
+    public boolean update(String query) {
         try{
-            Statement stmt = conn.createStatement();
+            Statement stmt = this.conn.createStatement();
             stmt.executeUpdate(query);
             return true;
         } catch (SQLException e) {
@@ -42,18 +34,18 @@ public class ConnectionDB {
         }
     }
 
-    public static ResultSet select(String query) {
+    public ResultSet select(String query) {
         try{
-            Statement stmt = conn.createStatement();
+            Statement stmt = this.conn.createStatement();
             return stmt.executeQuery(query);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("Error in select query");
             e.printStackTrace();
             return null;
         }
     }
 
-    public static boolean updateLog(String content, String type, String lamp_id) throws SQLException {
+    public boolean updateLog(String content, String type, String lamp_id) throws SQLException {
         // check if log exists
         ResultSet rs = select("SELECT * FROM log WHERE type = '" + type + "' AND lamp_id = '" + lamp_id + "'");
         if (rs != null && rs.next()) {

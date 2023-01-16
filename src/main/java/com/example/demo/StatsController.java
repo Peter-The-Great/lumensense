@@ -76,7 +76,7 @@ public class StatsController implements Initializable {
 
         try {
             ConnectionDB db = new ConnectionDB();
-            Connection conn = db.getConnection();
+            Connection conn = db.conn;
 
             String query        = "SELECT * FROM daily_lamp";
             Statement statement = conn.createStatement();
@@ -105,7 +105,7 @@ public class StatsController implements Initializable {
         XYChart.Series<String, Integer> series = new XYChart.Series();
         try {
             ConnectionDB db = new ConnectionDB();
-            Connection conn = db.getConnection();
+            Connection conn = db.conn;
 
             String query        = "SELECT * FROM daily_lamp";
             Statement statement = conn.createStatement();
