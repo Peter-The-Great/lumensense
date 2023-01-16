@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class TestHTMLParser {
     public static void main(String[] args) {
         File logFile = getLogFileFromMicrobit();
-        
     }
 
     private static File getLogFileFromMicrobit() {
