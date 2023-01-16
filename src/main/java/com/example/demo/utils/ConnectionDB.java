@@ -35,7 +35,7 @@ public class ConnectionDB {
     }
 
     public ResultSet select(String query) {
-        try{
+        try {
             Statement stmt = this.conn.createStatement();
             return stmt.executeQuery(query);
         } catch (Exception e) {
@@ -45,28 +45,32 @@ public class ConnectionDB {
         }
     }
 
-    public boolean updateLog(String content, String type, String lamp_id) throws SQLException {
+    public boolean updateLog(String content, String type, String lamp_id) {
         // check if log exists
-        ResultSet rs = select("SELECT * FROM log WHERE type = '" + type + "' AND lamp_id = '" + lamp_id + "'");
-        if (rs != null && rs.next()) {
-            // update log
-            return update("UPDATE log SET content = '" + content + "' WHERE type = '" + type + "' AND lamp_id = '" + lamp_id + "'");
-        } else {
-            // insert log
-            return update("INSERT INTO log (content, type, lamp_id) VALUES ('" + content + "', '" + type + "', '" + lamp_id + "')");
+        try {
+            ResultSet rs = select("SELECT * FROM log WHERE type = '" + type + "' AND lamp_id = '" + lamp_id + "'");
+            if (rs != null && rs.next()) {
+                // update log
+                return update("UPDATE log SET content = '" + content + "' WHERE type = '" + type + "' AND lamp_id = '" + lamp_id + "'");
+            } else {
+                // insert log
+                return update("INSERT INTO log (content, type, lamp_id) VALUES ('" + content + "', '" + type + "', '" + lamp_id + "')");
+            }
+        } catch (SQLException e) {
+            System.out.printf("SQL - Error: " + e.getMessage());
         }
+
+        return false;
     }
 
     public boolean updateLampStatus(String status, String lamp_id) {
         // check if log exists
-        try{
+        try {
             ResultSet rs = select("SELECT * FROM lamp WHERE lamp_id = '" + lamp_id + "'");
             if (rs != null && rs.next()) {
-                System.out.println("Entry found updating...");
                 // update log
                 return update("UPDATE lamp SET status = '" + status +  "' WHERE lamp_id = '" + lamp_id + "'");
             } else {
-                System.out.println("Entry not found inserting");
                 // insert log
                 return update("INSERT INTO lamp (status, lamp_id) VALUES ('" + status + "','" + lamp_id + "')");
             }

@@ -6,7 +6,7 @@ module com.example.demo {
     requires bcrypt;
     requires org.jsoup;
     requires org.json;
-    requires LumenSerial;
+    requires com.fazecast.jSerialComm;
 
     opens com.example.demo to javafx.fxml;
     exports com.example.demo;

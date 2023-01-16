@@ -4,7 +4,6 @@ import LumenSerial.LumenBitInterface;
 import LumenSerial.Model.Response;
 
 import java.sql.Connection;
-import java.util.HashMap;
 
 public class Updater {
     private ConnectionDB db;
@@ -18,6 +17,7 @@ public class Updater {
         this.lumenBit = new LumenBitInterface();
         this.logUtils = new LogUtils();
     }
+
     public void update() {
         if (this.lumenBit.connect()) {
             this.updateStatus();
@@ -28,6 +28,7 @@ public class Updater {
 
     public void updateStatus() {
         Response response = this.lumenBit.status.read();
+        boolean result = false;
 
         if (response.getStatus().equals("200")) {
             String lamps = (String) response.getData();
@@ -35,10 +36,10 @@ public class Updater {
                 String[] statusSplit = lamp.split("=");
                 String lampId = statusSplit[0];
                 String status = statusSplit[1].equals("1") ? "true" : "false";
-                this.db.updateLampStatus(status, lampId);
+                result = this.db.updateLampStatus(status, lampId);
             }
         }
-
+        System.out.println("Update status: " + (result ? "success" : "failed"));
     }
 
     public String getUUID() {
