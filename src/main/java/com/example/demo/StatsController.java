@@ -61,7 +61,9 @@ public class StatsController extends MainController implements Initializable {
     @FXML public Button refreshData;
     public Connection connection;
 
-
+    public StatsController() {
+        this.fxml = "stats.fxml";
+    }
 
 
 
@@ -112,8 +114,11 @@ public class StatsController extends MainController implements Initializable {
 
                 ));
             }
+
+
             tableView.setItems(listview);
             tableView1.setItems(listview);
+            idBar.setData(Xas);
 
 
         } catch (Exception e){

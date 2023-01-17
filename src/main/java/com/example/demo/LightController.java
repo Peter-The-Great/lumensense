@@ -7,7 +7,7 @@ import java.io.IOException;
 public class LightController extends MainController {
     public LightController() {
         this.fxml = "light.fxml";
-
+    }
 
     public void switchToLogs(ActionEvent event) throws IOException {
         LogsController logs = new LogsController();
