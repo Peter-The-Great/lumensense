@@ -3,13 +3,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.ControllerMain">
    <children>
@@ -85,11 +83,6 @@
                   <Image url="@../../../../../img/Lightbulb.png" />
                </image>
             </ImageView>
-            <TextField alignment="CENTER" layoutX="520.0" layoutY="30.0" style="-fx-background-color: white;" text="Street 1">
-               <font>
-                  <Font name="Arial Bold" size="16.0" />
-               </font>
-            </TextField>
             <Line endX="1137.4000244140625" layoutX="101.0" layoutY="188.0" startX="-100.0" />
             <Line endX="1137.4000244140625" layoutX="101.0" layoutY="62.0" startX="-100.0" />
             <Line endX="1123.0" endY="-0.22540283203125" layoutX="115.0" layoutY="506.0" startX="-115.00001525878906" />
@@ -106,10 +99,7 @@
             <Line endX="-100.00001525878906" endY="96.7071533203125" layoutX="631.0" layoutY="91.0" startX="-99.0" startY="-27.0" />
             <Line endX="-100.00001525878906" endY="96.7071533203125" layoutX="454.0" layoutY="91.0" startX="-99.0" startY="-27.0" />
             <Line endX="-100.00001525878906" endY="96.7071533203125" layoutX="276.0" layoutY="91.0" startX="-99.0" startY="-27.0" />
-            <Label layoutX="194.0" layoutY="202.0" prefHeight="18.0" prefWidth="142.0" text="ID: Status" />
-            <Label layoutX="17.0" layoutY="203.0" prefHeight="18.0" prefWidth="142.0" text="ID: Status" />
-            <Label layoutX="371.0" layoutY="203.0" prefHeight="18.0" prefWidth="142.0" text="ID: Status" />
-            <Label layoutX="548.0" layoutY="203.0" prefHeight="18.0" prefWidth="142.0" text="ID: Status" />
+            <Label fx:id="ID1" layoutX="17.0" layoutY="203.0" prefHeight="18.0" prefWidth="60.0" />
             <Label layoutX="725.0" layoutY="202.0" prefHeight="18.0" prefWidth="142.0" text="ID: Status" />
             <Label layoutX="902.0" layoutY="203.0" prefHeight="18.0" prefWidth="142.0" text="ID: Status" />
             <Label layoutX="1074.0" layoutY="203.0" prefHeight="18.0" prefWidth="142.0" text="ID: Status" />
@@ -120,6 +110,13 @@
             <Label layoutX="725.0" layoutY="520.0" prefHeight="18.0" prefWidth="142.0" text="ID: Status" />
             <Label layoutX="902.0" layoutY="519.0" prefHeight="18.0" prefWidth="142.0" text="ID: Status" />
             <Label layoutX="1074.0" layoutY="519.0" prefHeight="18.0" prefWidth="142.0" text="ID: Status" />
+            <Label fx:id="status1" layoutX="89.0" layoutY="203.0" prefHeight="18.0" prefWidth="60.0" />
+            <Label fx:id="id2" layoutX="194.0" layoutY="203.0" prefHeight="18.0" prefWidth="60.0" />
+            <Label fx:id="status2" layoutX="276.0" layoutY="203.0" prefHeight="18.0" prefWidth="60.0" />
+            <Label fx:id="id3" layoutX="371.0" layoutY="202.0" prefHeight="18.0" prefWidth="60.0" />
+            <Label fx:id="status3" layoutX="453.0" layoutY="203.0" prefHeight="18.0" prefWidth="60.0" />
+            <Label fx:id="id4" layoutX="549.0" layoutY="202.0" prefHeight="18.0" prefWidth="60.0" />
+            <Label fx:id="status4" layoutX="631.0" layoutY="203.0" prefHeight="18.0" prefWidth="60.0" />
          </children></AnchorPane>
       <Pane prefHeight="55.0" prefWidth="1280.0" style="-fx-background-color: #00008b;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

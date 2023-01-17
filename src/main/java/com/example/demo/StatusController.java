@@ -1,6 +1,6 @@
-/*
 package com.example.demo;
 
+import com.example.demo.utils.ConnectionDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,6 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.Time;
 import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -20,14 +19,14 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import javax.xml.transform.Result;
 
 
 public class StatusController implements Initializable {
@@ -35,50 +34,61 @@ public class StatusController implements Initializable {
     public Scene scene;
     public Parent root;
 
-    @FXML public Label<Status> textField;
-    @FXML public Label<Status, String> id;
 
-    @FXML public Label<Status, String> da;
+    @FXML
+    public static Label ID1;
+    @FXML
+    public Label status1;
+    @FXML
+    public Label id2;
+    @FXML
+    public Label status2;
+    @FXML
+    public Label id3;
+    @FXML
+    public Label status3;
+    @FXML
+    public Label id4;
+    @FXML
+    public Label status4;
+    @FXML
+    public Button DataRefresh;
 
-    @FXML public Label<Status, String> ia;
+
+    public Connection connection;
 
 
-    @FXML public Label<Status, String> ut;
 
-    @FXML public Label<Status, String> date;
+    public void initialize(URL location, ResourceBundle resources) {}
 
-    ObservableList<Status> listview = FXCollections.observableArrayList();
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void loadData(ActionEvent event) {
+
         System.out.println("test start testcontroller");
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        da.setCellValueFactory(new PropertyValueFactory<>("da"));
-        ia.setCellValueFactory(new PropertyValueFactory<>("ia"));
-        ut.setCellValueFactory(new PropertyValueFactory<>("ut"));
-        date.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+
+
 
         try {
             ConnectionDB db = new ConnectionDB();
-            Connection conn = db.getConnection();
+            Connection conn = db.conn;
 
-            String query        = "SELECT * FROM daily_lamp";
+            String query        = "SELECT * FROM lamp";
             Statement statement = conn.createStatement();
             ResultSet result    = statement.executeQuery(query);
-
+            String ida;
             while (result.next()){
                 System.out.println(result);
-                listview.add(new Stats(
-                        result.getInt("lamp_id"),
-                        result.getInt("direct_activations"),
-                        result.getInt("indirect_activations"),
-                        result.getTime("uptime"),
-                        result.getDate("date")
-                ));
+                ida = result.getString("lamp_id");
+                ID1.setText(ida);
+
             }
-            textField.setItems(listview);
+
+
+
         } catch (Exception e){
             System.out.println("Database error: " + e.getMessage());
         }
+
     }
 
 
@@ -97,12 +107,4 @@ public class StatusController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToStats(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("stats.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 }
-*/

@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -32,6 +33,7 @@ public class StatsController implements Initializable {
     public Stage stage;
     public Scene scene;
     public Parent root;
+
 
     @FXML public TableView<Stats> tableView;
     @FXML public TableColumn<Stats, String> id;
@@ -46,10 +48,19 @@ public class StatsController implements Initializable {
     @FXML public TableColumn<Stats, Integer> indirectA;
 
     @FXML public TableColumn<Stats, Date> date;
-    @FXML public TableColumn<Stats, Date> totalU;
+    @FXML public TableColumn<Stats, Integer> totalA;
+    @FXML public TableColumn<Stats, Integer> ta;
 
-    @FXML public BarChart <String, Integer>  barChart;
     @FXML public TableView<Stats> tableView1;
+
+    @FXML public static Label ID1;
+    @FXML public Label status1;
+    @FXML public Label id2;
+    @FXML public Label status2;
+    @FXML public Label id3;
+    @FXML public Label status3;
+    @FXML public Label id4;
+    @FXML public Label status4;
 
     @FXML public Button refreshData;
     public Connection connection;
@@ -63,14 +74,19 @@ public class StatsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         System.out.println("test start testcontroller");
+        //Tableview1
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         da.setCellValueFactory(new PropertyValueFactory<>("da"));
         ia.setCellValueFactory(new PropertyValueFactory<>("ia"));
+        ta.setCellValueFactory(new PropertyValueFactory<>("ta"));
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        //Tableview2
         id1.setCellValueFactory(new PropertyValueFactory<>("id"));
         directA.setCellValueFactory(new PropertyValueFactory<>("da"));
         indirectA.setCellValueFactory(new PropertyValueFactory<>("ia"));
-        totalU.setCellValueFactory(new PropertyValueFactory<>("date"));
+        totalA.setCellValueFactory(new PropertyValueFactory<>("ta"));
+
+
 
 
 
@@ -90,7 +106,9 @@ public class StatsController implements Initializable {
                         result.getString("lamp_id"),
                         result.getInt("direct_activations"),
                         result.getInt("indirect_activations"),
+                        result.getInt("total_activations"),
                         result.getDate("date")
+
 
                 ));
             }
@@ -99,31 +117,41 @@ public class StatsController implements Initializable {
         } catch (Exception e){
             System.out.println("Database error: " + e.getMessage());
         }
-    }
-    public void loadData(ActionEvent event) {
-        tableView.refresh();
-        XYChart.Series<String, Integer> series = new XYChart.Series();
         try {
             ConnectionDB db = new ConnectionDB();
             Connection conn = db.conn;
 
-            String query        = "SELECT * FROM daily_lamp";
+            String query        = "SELECT * FROM lamp";
             Statement statement = conn.createStatement();
             ResultSet result    = statement.executeQuery(query);
             while (result.next()){
-                series.getData().add(new XYChart.Data<>(
-                        result.getString("lamp_id"),
-                        result.getInt("direct_activations")
-
-
-                ));
-
-
+                String ida = result.getString("lamp_id");
+                ID1.setText(ida);
 
             }
-            barChart.getData().addAll(series);
-            /*this.barChart.setData(series);*/
 
+
+        } catch (Exception e){
+            System.out.println("Database error: " + e.getMessage());
+        }
+
+    }
+    public void loadData(ActionEvent event) {
+        tableView.refresh();
+        tableView1.refresh();
+
+        try {
+            ConnectionDB db = new ConnectionDB();
+            Connection conn = db.conn;
+
+            String query        = "SELECT * FROM lamp";
+            Statement statement = conn.createStatement();
+            ResultSet result    = statement.executeQuery(query);
+            while (result.next()){
+                        String ida = result.getString("lamp_id");
+                        ID1.setText(ida);
+
+            }
 
 
         } catch (Exception e){

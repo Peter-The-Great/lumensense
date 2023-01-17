@@ -21,18 +21,18 @@
                 <TableColumn fx:id="id" prefWidth="52.0" text="ID" />
                   <TableColumn fx:id="da" prefWidth="154.39996337890625" text="DIRECT ACTIVATIONS" />
                   <TableColumn fx:id="ia" minWidth="4.0" prefWidth="148.8000030517578" text="INDIRECT ACTIVATIONS" />
-                  <TableColumn fx:id="ut" minWidth="4.0" prefWidth="121.60003662109375" text="UPTIME" />
-                  <TableColumn fx:id="date" prefWidth="126.39998779296877" text="DATE" />
+                  <TableColumn fx:id="ta" minWidth="4.0" prefWidth="132.800048828125" text="TOTAL ACTIVATIONS" />
+                  <TableColumn fx:id="date" prefWidth="115.99993896484375" text="DATE" />
               </columns>
             </TableView>
             <Button layoutX="480.0" layoutY="12.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="&lt;" AnchorPane.leftAnchor="480.0" AnchorPane.topAnchor="10.0" />
             <Button layoutX="720.0" layoutY="12.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" text="&gt;" AnchorPane.rightAnchor="480.0" AnchorPane.topAnchor="10.0" />
             <BarChart fx:id="idBar" barGap="1.0" categoryGap="1.0" layoutX="645.0" layoutY="154.0" prefHeight="393.0" prefWidth="594.0" title="Times Triggered" AnchorPane.bottomAnchor="73.0" AnchorPane.rightAnchor="0.599999999999909" AnchorPane.topAnchor="154.0">
               <xAxis>
-                <CategoryAxis label="Light ID" side="BOTTOM" />
+                <CategoryAxis fx:id="Xas" side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis fx:id="Yas" side="LEFT" />
               </yAxis>
             </BarChart>
             <DatePicker layoutX="520.0" layoutY="12.0" prefHeight="40.0" prefWidth="200.0" promptText="DATE" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="520.0" AnchorPane.topAnchor="10.0" />
@@ -41,7 +41,7 @@
                   <TableColumn fx:id="id1" prefWidth="52.0" text="ID" />
                   <TableColumn fx:id="directA" prefWidth="154.39996337890625" text="DIRECT ACTIVATIONS" />
                   <TableColumn fx:id="indirectA" minWidth="4.0" prefWidth="148.8000030517578" text="INDIRECT ACTIVATIONS" />
-                  <TableColumn fx:id="totalU" minWidth="4.0" prefWidth="121.60003662109375" text="TOTAL UPTIME" />
+                  <TableColumn fx:id="totalA" minWidth="4.0" prefWidth="138.4000244140625" text="TOTAL ACTIVATIONS" />
                </columns>
             </TableView>
             <Button fx:id="refreshData" layoutX="901.0" layoutY="66.0" mnemonicParsing="false" onAction="#loadData" text="Refresh data" />
