@@ -24,5 +24,17 @@ public class MainController {
         stage.show();
     }
 
+    public void switchToLogs(ActionEvent event) throws IOException {
+        LogsController logs = new LogsController();
+        logs.load(event);
+    }
+    public void switchToLight(ActionEvent event) throws IOException {
+        LightController light = new LightController();
+        light.load(event);
+    }
 
+    public void switchToStats(ActionEvent event) throws IOException {
+        StatsController stats = new StatsController();
+        stats.load(event);
+    }
 }
