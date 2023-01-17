@@ -20,7 +20,6 @@ public class Main extends Application {
 
     public void start(Stage stage) {
         try {
-
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
             Scene scene = new Scene(root);
 

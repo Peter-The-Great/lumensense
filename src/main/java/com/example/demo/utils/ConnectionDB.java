@@ -1,5 +1,7 @@
 package com.example.demo.utils;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
 import java.sql.*;
 
 public class ConnectionDB {
@@ -102,6 +104,49 @@ public class ConnectionDB {
         } catch (SQLException e) {
             System.out.printf("SQL - Error: " + e.getMessage());
         }
+        return false;
+    }
+
+    public boolean authenticateUser(String username, String password) {
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM user WHERE username = ?");
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String dbPassword = rs.getString("password");
+                // bcrypt verify password
+                if (BCrypt.verifyer().verify(password.toCharArray(), dbPassword).verified) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.printf("SQL - Error: " + e.getMessage());
+        }
+
+        return false;
+    }
+
+    public boolean addUser(String username, String password) {
+        try {
+            // check if user exists
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM user WHERE username = ?");
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                stmt = this.conn.prepareStatement("UPDATE user SET password = ? WHERE username = ?");
+            } else {
+                // insert user
+                stmt = this.conn.prepareStatement("INSERT INTO user (username, password) VALUES (?, ?)");
+            }
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.printf("SQL - Error: " + e.getMessage());
+        }
+
         return false;
     }
 }
