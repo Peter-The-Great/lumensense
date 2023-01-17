@@ -11,13 +11,14 @@ import java.util.Objects;
 
 public class Main extends Application {
 
+    //Start the application via the launch function
     public static void main(String[] args) {
         launch(args);
 
     }
     @Override
 
-
+    //Start the application with loading the login screen. By doing a try.
     public void start(Stage stage) {
         try {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));

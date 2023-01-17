@@ -1,5 +1,6 @@
 package LumenSerial.Model;
 
+//Message model with all necessary data and functions included
 public class Message {
     private String method;
     private String action;

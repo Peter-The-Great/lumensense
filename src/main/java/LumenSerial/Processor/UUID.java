@@ -5,6 +5,7 @@ import LumenSerial.Constants.Messages;
 import LumenSerial.Model.Response;
 import LumenSerial.Parser.Parser;
 
+//Serial UUID class, that sets and reads UUID's from messages.
 public class UUID extends Processor {
     private Parser parser;
 

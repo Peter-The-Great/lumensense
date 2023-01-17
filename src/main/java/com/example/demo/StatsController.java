@@ -67,6 +67,7 @@ public class StatsController extends MainController implements Initializable {
 
 
 
+    //Make sure that the list of information is correctly displayed on the stats page
     ObservableList<Stats> listview = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -91,6 +92,7 @@ public class StatsController extends MainController implements Initializable {
 
 
 
+        //Make a query to get all the daily lamps where the date is today.
         try {
             ConnectionDB db = new ConnectionDB();
             Connection conn = db.conn;
@@ -127,6 +129,7 @@ public class StatsController extends MainController implements Initializable {
 
 
     }
+    //Load all the data into the stats.
     public void loadData(ActionEvent event) {
         tableView.refresh();
         tableView1.refresh();

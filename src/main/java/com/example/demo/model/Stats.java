@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.sql.Date;
 
+//This is the stats model where all necessary data is defined. You can get or set specific data. Including diffrent types of activation.
 public class Stats {
 
     int da,ia, ta;
@@ -11,6 +12,7 @@ public class Stats {
 
 
 
+    //Initialize the stats
     public Stats(String id, int da, int ia,int ta, Date date) {
         this.id = id;
         this.da = da;
@@ -41,6 +43,7 @@ public class Stats {
         return ia;
     }
 
+    //Get the id
     public void setIa(int ia) {
         this.ia = (int) ia;
     }

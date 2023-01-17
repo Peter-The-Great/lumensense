@@ -28,7 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-
+// This is the status controller with all the labels we need to change when the application is running.
 public class StatusController extends MainController implements Initializable {
     public Stage stage;
     public Scene scene;
@@ -61,6 +61,7 @@ public class StatusController extends MainController implements Initializable {
         this.fxml = "status.fxml";
     }
 
+    //Connect to the database and put all the labels within an array
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("test start testcontroller");
 
@@ -71,6 +72,7 @@ public class StatusController extends MainController implements Initializable {
             Label[] ids      = new Label[]{this.ID1, this.id2, this.id3, this.id4};
             Label[] statuses = new Label[]{this.status1, this.status2, this.status3, this.status4};
 
+            //If you get a result from the database fill it with the lampids and statuses. Until you have got them all.
             int index = 0;
             while (result.next()){
                 System.out.println(result);

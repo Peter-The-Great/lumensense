@@ -6,6 +6,7 @@ import LumenSerial.Model.Response;
 import java.sql.Connection;
 import java.util.HashMap;
 
+//A database updater tha updates either fast or slow depending on if there are any errors detected during communication.
 public class Updater {
     private ConnectionDB db;
     private Connection conn;
@@ -13,6 +14,7 @@ public class Updater {
     private LogUtils logUtils;
     private int errors = 0;
 
+    //Initialize
     public Updater() {
         this.db       = new ConnectionDB();
         this.conn     = this.db.conn;
@@ -20,6 +22,7 @@ public class Updater {
         this.logUtils = new LogUtils();
     }
 
+    //Choose the fast update if there are more than 4 errors.
     public void updateFast() {
         if (this.errors > 4) {
             this.lumenBit.disconnect();
@@ -34,6 +37,7 @@ public class Updater {
         }
     }
 
+    //Choose the fast update if there are few errors.
     public void updateSlow() {
         if (this.lumenBit.isConnected()) {
             this.updateTime();
@@ -44,6 +48,7 @@ public class Updater {
         }
     }
 
+    //Updates the status given from the microbit to the database
     public int updateStatus() {
         Response response = this.lumenBit.status.read();
 
@@ -63,6 +68,7 @@ public class Updater {
         }
     }
 
+    //Updates the activations given from the microbit to the database
     public int updateActivations() {
         Response response = this.lumenBit.activations.read();
 
@@ -86,6 +92,7 @@ public class Updater {
         }
     }
 
+    //Updates the logs given from the microbit to the database
     public void updateLogs() {
         try {
             HashMap<String, String> logs = this.logUtils.getLogs();
@@ -99,6 +106,7 @@ public class Updater {
         }
     }
 
+    //Updates the time to the current time the microbit is giving.
     public void updateTime() {
         this.lumenBit.time.set();
     }

@@ -1,5 +1,6 @@
 package LumenSerial.Model;
 
+//Request model with all necessary data and functions included
 public class Request {
     private String target = null;
     private String method = null;

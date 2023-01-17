@@ -3,7 +3,7 @@ package LumenSerial;
 import LumenSerial.Connector.Serial;
 import LumenSerial.Processor.*;
 
-
+//The whole lumensense interface
 public class LumenBitInterface {
     public Time time;
     public UUID uuid;
@@ -17,15 +17,18 @@ public class LumenBitInterface {
         this.connect();
     }
 
+    //Check if the microbit is connected.
     public boolean isConnected() {
         return this.serial != null && this.serial.isConnected();
     }
 
+    //Disconnect from the port.
     public void disconnect() {
         this.serial.port.closePort();
         this.connected = false;
     }
 
+    //Connect with the microbit via serial.
     public boolean connect() {
         this.serial = new Serial();
 
@@ -40,6 +43,8 @@ public class LumenBitInterface {
         }
     }
 
+    //Setting up the processors so when data comes in that there is data like current time
+    // and uuid that can be generated when new data arrives.
     public void setProcessors(Serial serial) {
         this.time = new Time(serial);
         this.uuid = new UUID(serial);
