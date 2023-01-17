@@ -29,7 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 
-public class StatsController implements Initializable {
+public class StatsController extends MainController implements Initializable {
     public Stage stage;
     public Scene scene;
     public Parent root;
@@ -161,18 +161,11 @@ public class StatsController implements Initializable {
 
 
     public void switchToLogs(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("logs.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
+        LogsController logs = new LogsController();
+        logs.load(event);
     }
     public void switchToLight(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        LightController light = new LightController();
+        light.load(event);
     }
 }
