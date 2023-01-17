@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.utils.ConnectionDB;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -34,6 +36,8 @@ public class StatusController extends MainController implements Initializable {
     public Scene scene;
     public Parent root;
 
+    @FXML
+    private Label time;
     @FXML
     public Label ID1;
     @FXML
@@ -66,6 +70,7 @@ public class StatusController extends MainController implements Initializable {
         System.out.println("test start testcontroller");
 
         try {
+            timenow();
             ConnectionDB db  = new ConnectionDB();
             ResultSet result = db.getStatus();
 
@@ -88,6 +93,23 @@ public class StatusController extends MainController implements Initializable {
         } catch (Exception e){
             System.out.println("Database error: " + e.getMessage());
         }
+    }
+    public void timenow(){
+        Thread thread = new Thread(() -> {
+            SimpleDateFormat sdf =  new SimpleDateFormat("hh:mm");
+            while(true){
+                try {
+                    Thread.sleep(1000);
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+                final String timenow = sdf.format(new Date());
+                Platform.runLater(() ->{
+                    this.time.setText(timenow);
+                });
+            }
+        });
+        thread.start();
     }
 
 }
