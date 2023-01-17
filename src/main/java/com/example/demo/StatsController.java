@@ -118,7 +118,7 @@ public class StatsController extends MainController implements Initializable {
 
             tableView.setItems(listview);
             tableView1.setItems(listview);
-            idBar.setData(Xas);
+            idBar.setData(listview);
 
 
         } catch (Exception e){
