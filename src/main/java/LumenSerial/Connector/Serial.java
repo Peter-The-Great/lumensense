@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Serial {
-    private SerialPort port;
+    public SerialPort port;
     private final Listener listener = new Listener();
     private Queue<String> buffer = new LinkedList<>();
 
@@ -36,15 +36,8 @@ public class Serial {
         return false;
     }
 
-    public boolean disconnect(){
-        try {
-            this.port.closePort();
-            this.port = null;
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-            return false;
-        }
-        return true;
+    public boolean isConnected() {
+        return this.port != null && this.port.isOpen();
     }
 
     private boolean openPort(SerialPort serialPort){

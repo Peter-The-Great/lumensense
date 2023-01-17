@@ -11,16 +11,23 @@ public class LumenBitInterface {
     public Activations activations;
     public Activators activators;
     public boolean connected = false;
+    private Serial serial = null;
 
     public LumenBitInterface() {
         this.connect();
     }
 
+    public boolean isConnected() {
+        return this.serial != null && this.serial.isConnected();
+    }
+
+    public void disconnect() {
+        this.serial.port.closePort();
+        this.connected = false;
+    }
+
     public boolean connect() {
-        if (this.connected) {
-            return true;
-        }
-        Serial serial = new Serial();
+        this.serial = new Serial();
 
         if (serial.connect()) {
             System.out.println("Connected to device");

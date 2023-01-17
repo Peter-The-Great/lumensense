@@ -9,8 +9,9 @@ import java.util.HashMap;
 public class Updater {
     private ConnectionDB db;
     private Connection conn;
-    private LumenBitInterface lumenBit;
+    public LumenBitInterface lumenBit;
     private LogUtils logUtils;
+    private int errors = 0;
 
     public Updater() {
         this.db       = new ConnectionDB();
@@ -20,24 +21,30 @@ public class Updater {
     }
 
     public void updateFast() {
-        if (this.lumenBit.connect()) {
-            this.updateStatus();
-            this.updateActivations();
+        if (this.errors > 4) {
+            this.lumenBit.disconnect();
+            this.errors = 0;
+        }
+        if (this.lumenBit.isConnected()) {
+            this.errors += this.updateStatus();
+            this.errors += this.updateActivations();
         } else {
             System.out.println("No connection to device");
+            this.lumenBit.connect();
         }
     }
 
     public void updateSlow() {
-        if (this.lumenBit.connect()) {
+        if (this.lumenBit.isConnected()) {
             this.updateTime();
             this.updateLogs();
         } else {
             System.out.println("No connection to device");
+            this.lumenBit.connect();
         }
     }
 
-    public void updateStatus() {
+    public int updateStatus() {
         Response response = this.lumenBit.status.read();
 
         if (response.getStatus().equals("200")) {
@@ -47,14 +54,16 @@ public class Updater {
                 String lampId = statusSplit[0];
                 String status = statusSplit[1].equals("1") ? "true" : "false";
                 boolean result = this.db.updateLampStatus(status, lampId);
-                System.out.println("Update status: " + (result ? "success" : "failed"));
+                System.out.println("Update status: " + (result ? "success" : "failed") );
             }
+            return 0;
         } else {
-            System.out.println("Update status failed, incorrect response: " + response.getMessage());
+            System.out.println("Update status failed, incorrect response: " + response.getMessage() + ", data: " + response.getData());
+            return 1;
         }
     }
 
-    public void updateActivations() {
+    public int updateActivations() {
         Response response = this.lumenBit.activations.read();
 
         if (response.getStatus().equals("200")) {
@@ -70,8 +79,10 @@ public class Updater {
                 boolean result = this.db.updateActivations(lamp_id, directs, indirects);
                 System.out.println("Update activation: " + (result ? "success" : "failed"));
             }
+            return 0;
         } else {
-            System.out.println("Update activations failed, incorrect response: " + response.getMessage());
+            System.out.println("Update activations failed, incorrect response: " + response.getMessage() + ", data: " + response.getData());
+            return 1;
         }
     }
 
@@ -81,10 +92,10 @@ public class Updater {
             for (String type : logs.keySet()) {
                 String content = logs.get(type);
                 boolean result = this.db.updateLog(content, type);
-                System.out.printf("Update log (%s): %s\n", type, (result ? "success" : "failed"));
+                System.out.printf("Update log (%s): %s\n", type, (result ? "success" : "failed") );
             }
         } catch (RuntimeException e) {
-            System.out.println("Update logs failed: " + e.getMessage());
+            System.out.println("Update logs failed: " + e.getMessage() );
         }
     }
 
