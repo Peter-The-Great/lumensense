@@ -1,19 +1,22 @@
 package com.example.demo;
 
 import java.sql.Date;
-import java.sql.Time;
 
 public class Stats {
 
-    int da,ia;
+    int da,ia, ta;
     String id;
 
     Date date;
 
-    public Stats(String id, int da, int ia, Date date) {
+
+
+    public Stats(String id, int da, int ia,int ta, Date date) {
         this.id = id;
         this.da = da;
         this.ia = ia;
+        this.ta = ta;
+
 
         this.date = date;
     }
@@ -42,7 +45,13 @@ public class Stats {
         this.ia = (int) ia;
     }
 
+    public int getTa() {
+        return ta;
+    }
 
+    public void setTa(int ta) {
+        this.ta = ta;
+    }
 
     public Date getDate() {
         return date;
