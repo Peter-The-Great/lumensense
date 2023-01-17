@@ -16,9 +16,14 @@
                   <Image url="@../../../../../../../../Downloads/logo.png" />
                </image>
             </ImageView>
-            <Button layoutX="66.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="60.0" text="Lights" />
-            <Button layoutX="126.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="60.0" text="Logs" />
-            <Button layoutX="186.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="60.0" text="Data" />
+            <Button layoutX="66.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #00008b; -fx-border-color: #FFFFFF;" text="Lights" textFill="WHITE" />
+            <Button layoutX="126.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #00008b; -fx-border-color: #FFFFFF;" text="Logs" textFill="WHITE" />
+            <Button layoutX="186.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #00008b; -fx-border-color: #FFFFFF;" text="Data" textFill="WHITE" />
+            <ImageView fitHeight="46.0" fitWidth="47.0" layoutX="6.0" layoutY="5.0">
+               <image>
+                  <Image url="@../../../../../img/logo.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
