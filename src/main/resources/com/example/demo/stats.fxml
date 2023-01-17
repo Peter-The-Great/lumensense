@@ -49,9 +49,9 @@
       </AnchorPane>
       <Pane prefHeight="55.0" prefWidth="1280.0" style="-fx-background-color: #00008b;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="66.0" mnemonicParsing="false" onAction="#switchToLight" prefHeight="55.0" prefWidth="60.0" text="Lights" />
-            <Button layoutX="126.0" mnemonicParsing="false" onAction="#switchToLogs" prefHeight="55.0" prefWidth="60.0" text="Logs" />
-             <Button layoutX="186.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="60.0" text="Data" />
+            <Button layoutX="66.0" mnemonicParsing="false" onAction="#switchToLight" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #00008b; -fx-border-color: #FFFFFF;" text="Lights" textFill="WHITE" />
+            <Button layoutX="126.0" mnemonicParsing="false" onAction="#switchToLogs" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #00008b; -fx-border-color: #FFFFFF;" text="Logs" textFill="WHITE" />
+             <Button layoutX="186.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #00008b; -fx-border-color: #FFFFFF;" text="Data" textFill="WHITE" />
             <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../img/logo.png" />
