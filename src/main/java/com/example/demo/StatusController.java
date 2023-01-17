@@ -59,9 +59,7 @@ public class StatusController implements Initializable {
 
 
 
-    public void initialize(URL location, ResourceBundle resources) {}
-
-    public void loadData(ActionEvent event) {
+    public void initialize(URL location, ResourceBundle resources) {
 
         System.out.println("test start testcontroller");
 
@@ -72,14 +70,38 @@ public class StatusController implements Initializable {
             ConnectionDB db = new ConnectionDB();
             Connection conn = db.conn;
 
-            String query        = "SELECT * FROM lamp";
+            String query        = "SELECT * FROM lamp where lamp_id in ('BLACK', 'GREEN','YELLOW','RED')";
+
             Statement statement = conn.createStatement();
             ResultSet result    = statement.executeQuery(query);
-            String ida;
+
+
             while (result.next()){
                 System.out.println(result);
-                ida = result.getString("lamp_id");
+                String ida = result.getString("lamp_id");
                 ID1.setText(ida);
+                String sta = result.getString("status");
+                status1.setText(sta);
+
+
+
+                String idb = result.getString("lamp_id");
+                id2.setText(idb);
+                String stb = result.getString("status");
+                status2.setText(stb);
+
+
+
+                String idc = result.getString("lamp_id");
+                id3.setText(idc);
+                String stc = result.getString("status");
+                status3.setText(stc);
+
+
+                String idd = result.getString("lamp_id");
+                id4.setText(idd);
+                String std = result.getString("status");
+                status4.setText(std);
 
             }
 
