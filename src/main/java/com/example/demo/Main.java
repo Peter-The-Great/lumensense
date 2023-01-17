@@ -21,7 +21,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         try {
 
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")));
             Scene scene = new Scene(root);
 
             Image icon = new Image("file:img/logo.png");
@@ -31,17 +31,6 @@ public class Main extends Application {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
-
-//            Updater updater = new Updater();
-//            new Thread(() -> {
-//                try {
-//                    updater.update();
-//                    Thread.sleep(500);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//            }).start();
-
         } catch(Exception e) {
             e.printStackTrace();
         }

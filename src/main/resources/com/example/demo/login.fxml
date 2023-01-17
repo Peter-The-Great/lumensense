@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,25 +9,36 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3E3939;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Login">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #3E3939;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.controller.Login">
    <children>
-      <AnchorPane layoutX="16.0" layoutY="64.0" prefHeight="287.0" prefWidth="568.0" style="-fx-background-color: #7C7A7A;">
+      <AnchorPane layoutX="240.0" layoutY="199.0" prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: #7C7A7A;">
          <children>
-            <Text fill="WHITE" layoutX="233.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inloggen">
+            <Text fill="WHITE" layoutX="347.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
                <font>
-                  <Font size="26.0" />
+                  <Font name="System Bold" size="40.0" />
                </font>
             </Text>
-            <TextField layoutX="179.0" layoutY="100.0" prefHeight="27.0" prefWidth="217.0" style="-fx-border-color: #000000;" text="gebruikersnaam " />
-            <Button layoutX="179.0" layoutY="229.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" text="inloggen" />
-            <PasswordField layoutX="180.0" layoutY="151.0" prefHeight="27.0" prefWidth="218.0" style="-fx-border-color: #000000;" text="wachtwoord" />
+            <TextField fx:id="username" layoutX="247.0" layoutY="100.0" prefHeight="51.0" prefWidth="306.0" promptText="Username" style="-fx-border-color: #000000;">
+               <font>
+                  <Font size="22.0" />
+               </font></TextField>
+            <PasswordField fx:id="password" layoutX="247.0" layoutY="173.0" prefHeight="54.0" prefWidth="306.0" promptText="Password" style="-fx-border-color: #000000;">
+               <font>
+                  <Font size="22.0" />
+               </font></PasswordField>
+            <Label fx:id="actionTarget" layoutX="246.0" layoutY="241.0" prefHeight="17.0" prefWidth="306.0" textAlignment="CENTER" textFill="#e8ff4f">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Button fx:id="login" layoutX="305.0" layoutY="288.0" mnemonicParsing="false" onAction="#login" prefHeight="60.0" prefWidth="190.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" text="Login">
+               <font>
+                  <Font size="28.0" />
+               </font></Button>
          </children>
       </AnchorPane>
-      <Pane prefHeight="42.0" prefWidth="600.0" style="-fx-background-color: #00008b;">
+      <Pane prefHeight="42.0" prefWidth="1280.0" style="-fx-background-color: #00008b;">
          <children>
             <Text fill="WHITE" layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logo" wrappingWidth="55.7366943359375" />
-            <Text fill="WHITE" layoutX="558.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12:30" wrappingWidth="55.7366943359375" />
          </children>
       </Pane>
    </children>

@@ -1,6 +1,4 @@
-package com.example.demo;
-import java.io.IOException;
-import java.util.Objects;
+package com.example.demo.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -9,23 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class ControllerMain {
+import java.io.IOException;
+import java.util.Objects;
 
-    //Table
-
-
-
+public class Main {
     public Stage stage;
     public Scene scene;
     public Parent root;
-
-    public void switchToLight(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
     public void switchToStats(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("stats.fxml")));
@@ -43,14 +31,12 @@ public class ControllerMain {
         stage.show();
 
     }
-//    public void switchToTest(ActionEvent event) throws IOException {
-//        root = FXMLLoader.load(getClass().getResource("test.fxml"));
-//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
 
-
-
+    public void switchToLight(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
