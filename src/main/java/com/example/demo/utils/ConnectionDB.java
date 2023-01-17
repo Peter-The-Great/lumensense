@@ -25,6 +25,16 @@ public class ConnectionDB {
         }
     }
 
+    public ResultSet getStatus() {
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM lamp where lamp_id in ('BLACK', 'GREEN','YELLOW','RED')");
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.printf("SQL - Error: " + e.getMessage());
+        }
+        return null;
+    }
+
     public boolean updateLog(String content, String type) {
         try {
             // check if log already exists
