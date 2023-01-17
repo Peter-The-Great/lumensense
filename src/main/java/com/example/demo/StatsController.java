@@ -118,7 +118,7 @@ public class StatsController extends MainController implements Initializable {
 
             tableView.setItems(listview);
             tableView1.setItems(listview);
-            idBar.setData(Xas);
+//            idBar.setData(Xas);
 
 
         } catch (Exception e){
@@ -130,15 +130,5 @@ public class StatsController extends MainController implements Initializable {
     public void loadData(ActionEvent event) {
         tableView.refresh();
         tableView1.refresh();
-
-
-    }
-    public void switchToLogs(ActionEvent event) throws IOException {
-        LogsController logs = new LogsController();
-        logs.load(event);
-    }
-    public void switchToLight(ActionEvent event) throws IOException {
-        LightController light = new LightController();
-        light.load(event);
     }
 }

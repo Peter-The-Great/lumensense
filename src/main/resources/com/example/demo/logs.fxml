@@ -47,8 +47,8 @@
                   <Image url="@../../../../../img/logo.png" />
                </image>
             </ImageView>
-            <Button layoutX="66.0" mnemonicParsing="false" onAction="#switchToLight" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #00008b; -fx-border-color: #FFFFFF;" text="Lights" textFill="#fffafa" />
-            <Button layoutX="126.0" mnemonicParsing="false" onAction="#switchToLogs" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #00008b; -fx-border-color: #FFFFFF;" text="Logs" textFill="WHITE" />
+            <Button layoutX="66.0" mnemonicParsing="false" onAction="#switchToStatus" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #00008b; -fx-border-color: #FFFFFF;" text="Lights" textFill="#fffafa" />
+            <Button layoutX="126.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #00008b; -fx-border-color: #FFFFFF;" text="Logs" textFill="WHITE" />
             <Button layoutX="186.0" mnemonicParsing="false" onAction="#switchToStats" prefHeight="55.0" prefWidth="60.0" style="-fx-background-color: #00008b; -fx-border-color: #FFFFFF;" text="Data" textFill="WHITE" />
             <TextField alignment="CENTER" layoutX="1200.0" prefHeight="55.0" prefWidth="60.0" promptText="12:30" style="-fx-background-color: #00008b; -fx-border-color: #ffffff;" styleClass="-fx-text-fill" />
          </children>

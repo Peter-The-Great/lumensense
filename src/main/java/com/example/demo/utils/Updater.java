@@ -52,7 +52,7 @@ public class Updater {
             for (String lamp : lamps.split(",")) {
                 String[] statusSplit = lamp.split("=");
                 String lampId = statusSplit[0];
-                String status = statusSplit[1].equals("1") ? "true" : "false";
+                String status = statusSplit[1].equals("1") ? "ON" : "OFF";
                 boolean result = this.db.updateLampStatus(status, lampId);
                 System.out.println("Update status: " + (result ? "success" : "failed") );
             }

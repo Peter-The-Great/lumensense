@@ -28,9 +28,9 @@ public class MainController {
         LogsController logs = new LogsController();
         logs.load(event);
     }
-    public void switchToLight(ActionEvent event) throws IOException {
-        LightController light = new LightController();
-        light.load(event);
+    public void switchToStatus(ActionEvent event) throws IOException {
+        StatusController status = new StatusController();
+        status.load(event);
     }
 
     public void switchToStats(ActionEvent event) throws IOException {

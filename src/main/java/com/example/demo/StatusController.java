@@ -29,14 +29,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 
-public class StatusController implements Initializable {
+public class StatusController extends MainController implements Initializable {
     public Stage stage;
     public Scene scene;
     public Parent root;
 
-
     @FXML
-    public static Label ID1;
+    public Label ID1;
     @FXML
     public Label status1;
     @FXML
@@ -51,82 +50,42 @@ public class StatusController implements Initializable {
     public Label id4;
     @FXML
     public Label status4;
+
     @FXML
     public Button DataRefresh;
 
 
     public Connection connection;
 
-
+    public StatusController() {
+        this.fxml = "status.fxml";
+    }
 
     public void initialize(URL location, ResourceBundle resources) {
-
         System.out.println("test start testcontroller");
 
-
-
-
         try {
-            ConnectionDB db = new ConnectionDB();
-            Connection conn = db.conn;
+            ConnectionDB db  = new ConnectionDB();
+            ResultSet result = db.getStatus();
 
-            String query        = "SELECT * FROM lamp where lamp_id in ('BLACK', 'GREEN','YELLOW','RED')";
+            Label[] ids      = new Label[]{this.ID1, this.id2, this.id3, this.id4};
+            Label[] statuses = new Label[]{this.status1, this.status2, this.status3, this.status4};
 
-            Statement statement = conn.createStatement();
-            ResultSet result    = statement.executeQuery(query);
-
-
+            int index = 0;
             while (result.next()){
                 System.out.println(result);
-                String ida = result.getString("lamp_id");
-                ID1.setText(ida);
-                String sta = result.getString("status");
-                status1.setText(sta);
 
+                String lamp_id = result.getString("lamp_id");
+                ids[index].setText(lamp_id);
 
+                String status = result.getString("status");
+                statuses[index].setText(status);
 
-                String idb = result.getString("lamp_id");
-                id2.setText(idb);
-                String stb = result.getString("status");
-                status2.setText(stb);
-
-
-
-                String idc = result.getString("lamp_id");
-                id3.setText(idc);
-                String stc = result.getString("status");
-                status3.setText(stc);
-
-
-                String idd = result.getString("lamp_id");
-                id4.setText(idd);
-                String std = result.getString("status");
-                status4.setText(std);
-
+                index++;
             }
-
-
-
         } catch (Exception e){
             System.out.println("Database error: " + e.getMessage());
         }
-
     }
 
-
-    public void switchToLogs(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("logs.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
-    public void switchToLight(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 }
