@@ -53,14 +53,6 @@ public class StatsController implements Initializable {
 
     @FXML public TableView<Stats> tableView1;
 
-    @FXML public static Label ID1;
-    @FXML public Label status1;
-    @FXML public Label id2;
-    @FXML public Label status2;
-    @FXML public Label id3;
-    @FXML public Label status3;
-    @FXML public Label id4;
-    @FXML public Label status4;
 
     @FXML public Button refreshData;
     public Connection connection;
@@ -94,7 +86,8 @@ public class StatsController implements Initializable {
             ConnectionDB db = new ConnectionDB();
             Connection conn = db.conn;
 
-            String query        = "SELECT * FROM daily_lamp";
+            String query        = "SELECT * FROM daily_lamp\n" +
+                                  "WHERE date = CURDATE()";
             Statement statement = conn.createStatement();
             ResultSet result    = statement.executeQuery(query);
 
@@ -117,49 +110,15 @@ public class StatsController implements Initializable {
         } catch (Exception e){
             System.out.println("Database error: " + e.getMessage());
         }
-        try {
-            ConnectionDB db = new ConnectionDB();
-            Connection conn = db.conn;
 
-            String query        = "SELECT * FROM lamp";
-            Statement statement = conn.createStatement();
-            ResultSet result    = statement.executeQuery(query);
-            while (result.next()){
-                String ida = result.getString("lamp_id");
-                ID1.setText(ida);
-
-            }
-
-
-        } catch (Exception e){
-            System.out.println("Database error: " + e.getMessage());
-        }
 
     }
     public void loadData(ActionEvent event) {
         tableView.refresh();
         tableView1.refresh();
 
-        try {
-            ConnectionDB db = new ConnectionDB();
-            Connection conn = db.conn;
 
-            String query        = "SELECT * FROM lamp";
-            Statement statement = conn.createStatement();
-            ResultSet result    = statement.executeQuery(query);
-            while (result.next()){
-                        String ida = result.getString("lamp_id");
-                        ID1.setText(ida);
-
-            }
-
-
-        } catch (Exception e){
-            System.out.println("Database error: " + e.getMessage());
-        }
     }
-
-
     public void switchToLogs(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("logs.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
