@@ -20,6 +20,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -53,6 +55,9 @@ public class StatsController implements Initializable {
 
     @FXML public TableView<Stats> tableView1;
 
+    @FXML public CategoryAxis  Xas;
+    @FXML public NumberAxis Yas;
+
 
     @FXML public Button refreshData;
     public Connection connection;
@@ -77,6 +82,9 @@ public class StatsController implements Initializable {
         directA.setCellValueFactory(new PropertyValueFactory<>("da"));
         indirectA.setCellValueFactory(new PropertyValueFactory<>("ia"));
         totalA.setCellValueFactory(new PropertyValueFactory<>("ta"));
+        //Barchart
+        Xas.setUserData(new PropertyValueFactory<>("id"));
+        Yas.setUserData(new PropertyValueFactory<>("ta"));
 
 
 
@@ -107,6 +115,7 @@ public class StatsController implements Initializable {
             }
             tableView.setItems(listview);
             tableView1.setItems(listview);
+
         } catch (Exception e){
             System.out.println("Database error: " + e.getMessage());
         }
