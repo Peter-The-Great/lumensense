@@ -17,6 +17,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -49,14 +53,10 @@ public class StatsController extends MainController implements Initializable {
 
     @FXML public TableView<Stats> tableView1;
 
-    @FXML public static Label ID1;
-    @FXML public Label status1;
-    @FXML public Label id2;
-    @FXML public Label status2;
-    @FXML public Label id3;
-    @FXML public Label status3;
-    @FXML public Label id4;
-    @FXML public Label status4;
+    @FXML public CategoryAxis  Xas;
+    @FXML public NumberAxis Yas;
+    @FXML public BarChart idBar;
+
 
     @FXML public Button refreshData;
     public Connection connection;
@@ -81,6 +81,9 @@ public class StatsController extends MainController implements Initializable {
         directA.setCellValueFactory(new PropertyValueFactory<>("da"));
         indirectA.setCellValueFactory(new PropertyValueFactory<>("ia"));
         totalA.setCellValueFactory(new PropertyValueFactory<>("ta"));
+        //Barchart
+        Xas.setUserData(new PropertyValueFactory<>("id"));
+        Yas.setUserData(new PropertyValueFactory<>("ta"));
 
 
 
@@ -90,7 +93,8 @@ public class StatsController extends MainController implements Initializable {
             ConnectionDB db = new ConnectionDB();
             Connection conn = db.conn;
 
-            String query        = "SELECT * FROM daily_lamp";
+            String query        = "SELECT * FROM daily_lamp\n" +
+                                  "WHERE date = CURDATE()";
             Statement statement = conn.createStatement();
             ResultSet result    = statement.executeQuery(query);
 
@@ -110,52 +114,20 @@ public class StatsController extends MainController implements Initializable {
             }
             tableView.setItems(listview);
             tableView1.setItems(listview);
-        } catch (Exception e){
-            System.out.println("Database error: " + e.getMessage());
-        }
-        try {
-            ConnectionDB db = new ConnectionDB();
-            Connection conn = db.conn;
-
-            String query        = "SELECT * FROM lamp";
-            Statement statement = conn.createStatement();
-            ResultSet result    = statement.executeQuery(query);
-            while (result.next()){
-                String ida = result.getString("lamp_id");
-                ID1.setText(ida);
-
-            }
 
 
         } catch (Exception e){
             System.out.println("Database error: " + e.getMessage());
         }
+
 
     }
     public void loadData(ActionEvent event) {
         tableView.refresh();
         tableView1.refresh();
 
-        try {
-            ConnectionDB db = new ConnectionDB();
-            Connection conn = db.conn;
 
-            String query        = "SELECT * FROM lamp";
-            Statement statement = conn.createStatement();
-            ResultSet result    = statement.executeQuery(query);
-            while (result.next()){
-                        String ida = result.getString("lamp_id");
-                        ID1.setText(ida);
-
-            }
-
-
-        } catch (Exception e){
-            System.out.println("Database error: " + e.getMessage());
-        }
     }
-
-
     public void switchToLogs(ActionEvent event) throws IOException {
         LogsController logs = new LogsController();
         logs.load(event);
