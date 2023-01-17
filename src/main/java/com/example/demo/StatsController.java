@@ -57,6 +57,7 @@ public class StatsController implements Initializable {
 
     @FXML public CategoryAxis  Xas;
     @FXML public NumberAxis Yas;
+    @FXML public BarChart idBar;
 
 
     @FXML public Button refreshData;
@@ -115,6 +116,7 @@ public class StatsController implements Initializable {
             }
             tableView.setItems(listview);
             tableView1.setItems(listview);
+
 
         } catch (Exception e){
             System.out.println("Database error: " + e.getMessage());
