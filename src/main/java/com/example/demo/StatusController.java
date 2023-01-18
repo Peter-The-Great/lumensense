@@ -6,7 +6,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -56,14 +55,11 @@ public class StatusController extends MainController implements Initializable {
 
     @FXML
     public Button DataRefresh;
-
-
     public Connection connection;
 
     public StatusController() {
         this.fxml = "status.fxml";
     }
-
     //Connect to the database and put all the labels within an array
     public void initialize(URL location, ResourceBundle resources) {
         dataRefresher();
