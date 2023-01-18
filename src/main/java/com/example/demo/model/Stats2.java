@@ -15,11 +15,7 @@ public class Stats2 {
     //Initialize the stats
     public Stats2(String id1,int totalA) {
         this.id1 = id1;
-
         this.totalA = totalA;
-
-
-
     }
 
     public String  getId1() {
@@ -30,11 +26,11 @@ public class Stats2 {
         this.id1 = id1;
     }
 
-    public int gettotalA() {
+    public int getTotalA() {
         return totalA;
     }
 
-    public void settotalA(int totalA) {
+    public void setTotalA(int totalA) {
         this.totalA = totalA;
     }
 

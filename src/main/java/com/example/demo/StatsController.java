@@ -128,9 +128,6 @@ public class StatsController extends MainController implements Initializable {
                     listview1.add(new Stats2(
                             result1.getString("lamp_id"),
                             result1.getInt("total_activations")
-
-
-
                     ));
                 }
 
