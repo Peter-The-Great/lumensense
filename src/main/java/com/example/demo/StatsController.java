@@ -46,14 +46,6 @@ public class StatsController extends MainController implements Initializable {
     @FXML public TableColumn<Stats, String> id;
     @FXML public TableColumn<Stats2, String> id1;
 
-    @FXML public TableColumn<Stats, Integer> da;
-
-    @FXML public TableColumn<Stats2, Integer> directA;
-
-    @FXML public TableColumn<Stats, Integer> ia;
-
-    @FXML public TableColumn<Stats2, Integer> indirectA;
-
     @FXML public TableColumn<Stats, Date> date;
     @FXML public TableColumn<Stats2, Integer> totalA;
     @FXML public TableColumn<Stats, Integer> ta;
@@ -80,8 +72,18 @@ public class StatsController extends MainController implements Initializable {
     ObservableList<Stats2> listview1 = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        loadDataStats();
 
 
+
+    }
+    //Load all the data into the stats.
+    public void loadData(ActionEvent event) {
+        listview.clear();
+        listview1.clear();
+        loadDataStats();
+    }
+    public void loadDataStats(){
         System.out.println("test start testcontroller");
         //Tableview1
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -90,15 +92,7 @@ public class StatsController extends MainController implements Initializable {
         //Tableview2
         id1.setCellValueFactory(new PropertyValueFactory<>("id1"));
         totalA.setCellValueFactory(new PropertyValueFactory<>("totalA"));
-        //Barchart
-//        Xas.setUserData(new PropertyValueFactory<>("id"));
-//        Yas.setUserData(new PropertyValueFactory<>("ta"));
 
-
-
-
-
-        //Make a query to get all the daily lamps where the date is today.
         try {
             ConnectionDB db  = new ConnectionDB();
             ResultSet result = db.getStats();
@@ -119,48 +113,22 @@ public class StatsController extends MainController implements Initializable {
 
         tableView.setItems(listview);
 
-            try {
-                ConnectionDB db1  = new ConnectionDB();
-                ResultSet result1 = db1.getStats1();
+        try {
+            ConnectionDB db1  = new ConnectionDB();
+            ResultSet result1 = db1.getStats1();
 
-                while (result1.next()){
-                    System.out.println(result1);
-                    listview1.add(new Stats2(
-                            result1.getString("lamp_id"),
-                            result1.getInt("total_activations")
-                    ));
-                }
-
-
-
+            while (result1.next()){
+                System.out.println(result1);
+                listview1.add(new Stats2(
+                        result1.getString("lamp_id"),
+                        result1.getInt("total_activations")
+                ));
+            }
         } catch (Exception e){
             System.out.println("Database error: " + e.getMessage());
         }
         tableView1.setItems(listview1);
-//            idBar.setData(Xas);
-
 
     }
-    //Load all the data into the stats.
-    public void loadData(ActionEvent event) {
-        tableView.refresh();
-        tableView1.refresh();
-    }
-//    public void timenow(){
-//        Thread thread = new Thread(() -> {
-//            SimpleDateFormat sdf =  new SimpleDateFormat("HH:mm");
-//            while(true){
-//                try {
-//                    Thread.sleep(1000);
-//                }catch (Exception e){
-//                    System.out.println(e);
-//                }
-//                final String timenow = sdf.format(new Date());
-//                Platform.runLater(() ->{
-//                    this.time2.setText(timenow);
-//                });
-//            }
-//        });
-//        thread.start();
-//    }
+
 }
