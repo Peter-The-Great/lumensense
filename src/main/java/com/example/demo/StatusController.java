@@ -62,7 +62,6 @@ public class StatusController extends MainController implements Initializable {
 
     public StatusController() {
         this.fxml = "status.fxml";
-//        timenow();
     }
 
     //Connect to the database and put all the labels within an array
@@ -73,7 +72,7 @@ public class StatusController extends MainController implements Initializable {
             while (true) {
                 try {
                     Thread.sleep(1000);
-                    this.dataRefresher();
+                    dataRefresher();
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     e.printStackTrace();
@@ -112,6 +111,7 @@ public class StatusController extends MainController implements Initializable {
                 }
                 String status = result.getString("status");
                 statuses[index].setText(status);
+                System.out.println(status);
                 if (status.equals("ON")){
                     statuses[index].setTextFill(Color.LIMEGREEN);
                 }else {
