@@ -20,7 +20,7 @@
             <Pane layoutX="25.0" layoutY="90.0" prefHeight="500.0" prefWidth="375.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <Label fx:id="updated1" layoutX="12.0" layoutY="14.0" prefHeight="26.0" prefWidth="351.0" />
-                  <TextArea fx:id="generalid" layoutX="12.0" layoutY="74.0" prefHeight="412.0" prefWidth="351.0">
+                  <TextArea fx:id="generalid" editable="false" layoutX="12.0" layoutY="74.0" prefHeight="412.0" prefWidth="351.0">
                      <font>
                         <Font size="9.0" />
                      </font></TextArea>
@@ -28,7 +28,7 @@
             <Pane layoutX="405.0" layoutY="90.0" prefHeight="500.0" prefWidth="375.0" style="-fx-background-color: #FF0000;">
                <children>
                   <Label fx:id="updated2" layoutX="12.0" layoutY="14.0" prefHeight="26.0" prefWidth="351.0" />
-                  <TextArea fx:id="errorid" layoutX="12.0" layoutY="74.0" prefHeight="412.0" prefWidth="351.0" style="-fx-background-color: red;">
+                  <TextArea fx:id="errorid" editable="false" layoutX="12.0" layoutY="74.0" prefHeight="412.0" prefWidth="351.0">
                      <font>
                         <Font size="10.0" />
                      </font></TextArea>
@@ -36,7 +36,7 @@
             <Pane layoutX="785.0" layoutY="90.0" prefHeight="500.0" prefWidth="375.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #FFFFFF;">
                <children>
                   <Label fx:id="updated3" layoutX="12.0" layoutY="14.0" prefHeight="26.0" prefWidth="351.0" />
-                  <TextArea fx:id="networkid" layoutX="12.0" layoutY="74.0" prefHeight="412.0" prefWidth="351.0">
+                  <TextArea fx:id="networkid" editable="false" layoutX="12.0" layoutY="74.0" prefHeight="412.0" prefWidth="351.0">
                      <font>
                         <Font size="10.0" />
                      </font></TextArea>
