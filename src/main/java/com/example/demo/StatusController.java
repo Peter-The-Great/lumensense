@@ -28,6 +28,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 // This is the status controller with all the labels we need to change when the application is running.
@@ -37,7 +38,7 @@ public class StatusController extends MainController implements Initializable {
     public Parent root;
 
     @FXML
-    private Label time;
+    public Label time3;
     @FXML
     public Label ID1;
     @FXML
@@ -63,6 +64,7 @@ public class StatusController extends MainController implements Initializable {
 
     public StatusController() {
         this.fxml = "status.fxml";
+//        timenow();
     }
 
     //Connect to the database and put all the labels within an array
@@ -70,7 +72,7 @@ public class StatusController extends MainController implements Initializable {
         System.out.println("test start testcontroller");
 
         try {
-            timenow();
+
             ConnectionDB db  = new ConnectionDB();
             ResultSet result = db.getStatus();
 
@@ -84,9 +86,24 @@ public class StatusController extends MainController implements Initializable {
 
                 String lamp_id = result.getString("lamp_id");
                 ids[index].setText(lamp_id);
+                if (lamp_id.equals("RED")){
+                    ids[index].setTextFill(Color.RED);
+                } else if (lamp_id.equals("GREEN")) {
+                    ids[index].setTextFill(Color.GREEN);
+                    
+                }else if (lamp_id.equals("YELLOW")) {
+                    ids[index].setTextFill(Color.YELLOW);
 
+                }else {
+                    ids[index].setTextFill(Color.BLACK);
+                }
                 String status = result.getString("status");
                 statuses[index].setText(status);
+                if (status.equals("ON")){
+                    statuses[index].setTextFill(Color.LIMEGREEN);
+                }else {
+                    statuses[index].setTextFill(Color.RED);
+                }
 
                 index++;
             }
@@ -94,22 +111,22 @@ public class StatusController extends MainController implements Initializable {
             System.out.println("Database error: " + e.getMessage());
         }
     }
-    public void timenow(){
-        Thread thread = new Thread(() -> {
-            SimpleDateFormat sdf =  new SimpleDateFormat("HH:mm");
-            while(true){
-                try {
-                    Thread.sleep(1000);
-                }catch (Exception e){
-                    System.out.println(e);
-                }
-                final String timenow = sdf.format(new Date());
-                Platform.runLater(() ->{
-                    this.time.setText(timenow);
-                });
-            }
-        });
-        thread.start();
-    }
+//    public void timenow(){
+//        Thread thread = new Thread(() -> {
+//            SimpleDateFormat sdf =  new SimpleDateFormat("HH:mm");
+//            while(true){
+//                try {
+//                    Thread.sleep(1000);
+//                }catch (Exception e){
+//                    System.out.println(e);
+//                }
+//                final String timenow = sdf.format(new Date());
+//                Platform.runLater(() ->{
+//                    this.time3.setText(timenow);
+//                });
+//            }
+//        });
+//        thread.start();
+//    }
 
 }

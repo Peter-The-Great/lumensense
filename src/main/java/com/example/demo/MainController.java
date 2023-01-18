@@ -17,6 +17,7 @@ public class MainController {
     public Parent root;
     String fxml = "login.fxml";
 
+
     //loads up the first screen which in our case is the login screen.
     public void load(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(this.fxml)));

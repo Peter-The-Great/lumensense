@@ -59,7 +59,7 @@
                   <Image url="@../../../../../img/logo.png" />
                </image>
             </ImageView>
-            <Label fx:id="time" layoutX="1166.0" layoutY="-5.0" text="00:00" textFill="WHITE">
+            <Label fx:id="time2" layoutX="1166.0" layoutY="-5.0" text="00:00" textFill="WHITE">
                <font>
                   <Font size="42.0" />
                </font>

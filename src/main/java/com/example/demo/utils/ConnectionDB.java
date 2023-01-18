@@ -35,6 +35,33 @@ public class ConnectionDB {
         }
         return null;
     }
+    public ResultSet getStats() {
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM daily_lamp WHERE date = CURDATE()");
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.printf("SQL - Error: " + e.getMessage());
+        }
+        return null;
+    }
+    public ResultSet getStats1() {
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM daily_lamp");
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.printf("SQL - Error: " + e.getMessage());
+        }
+        return null;
+    }
+    public ResultSet getLogs() {
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM log");
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.printf("SQL - Error: " + e.getMessage());
+        }
+        return null;
+    }
 
     public boolean updateLog(String content, String type) {
         try {
