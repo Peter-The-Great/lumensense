@@ -85,14 +85,10 @@ public class StatsController extends MainController implements Initializable {
         System.out.println("test start testcontroller");
         //Tableview1
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        da.setCellValueFactory(new PropertyValueFactory<>("da"));
-        ia.setCellValueFactory(new PropertyValueFactory<>("ia"));
         ta.setCellValueFactory(new PropertyValueFactory<>("ta"));
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
         //Tableview2
         id1.setCellValueFactory(new PropertyValueFactory<>("id1"));
-        directA.setCellValueFactory(new PropertyValueFactory<>("directA"));
-        indirectA.setCellValueFactory(new PropertyValueFactory<>("indirectA"));
         totalA.setCellValueFactory(new PropertyValueFactory<>("totalA"));
         //Barchart
 //        Xas.setUserData(new PropertyValueFactory<>("id"));
@@ -111,8 +107,6 @@ public class StatsController extends MainController implements Initializable {
                 System.out.println(result);
                 listview.add(new Stats(
                         result.getString("lamp_id"),
-                        result.getInt("direct_activations"),
-                        result.getInt("indirect_activations"),
                         result.getInt("total_activations"),
                         result.getDate("date")
 
@@ -133,8 +127,6 @@ public class StatsController extends MainController implements Initializable {
                     System.out.println(result1);
                     listview1.add(new Stats2(
                             result1.getString("lamp_id"),
-                            result1.getInt("direct_activations"),
-                            result1.getInt("indirect_activations"),
                             result1.getInt("total_activations")
 
 

@@ -5,7 +5,7 @@ import java.sql.Date;
 //This is the stats model where all necessary data is defined. You can get or set specific data. Including diffrent types of activation.
 public class Stats2 {
 
-    int directA,indirectA, totalA;
+    int  totalA;
     String id1;
 
 
@@ -13,10 +13,9 @@ public class Stats2 {
 
 
     //Initialize the stats
-    public Stats2(String id1, int directA, int indirectA,int totalA) {
+    public Stats2(String id1,int totalA) {
         this.id1 = id1;
-        this.directA = directA;
-        this.indirectA = indirectA;
+
         this.totalA = totalA;
 
 
@@ -29,23 +28,6 @@ public class Stats2 {
 
     public void setId1(String id1) {
         this.id1 = id1;
-    }
-
-    public int getdirectA() {
-        return directA;
-    }
-
-    public void setdirectA(int directA) {
-        this.directA = directA;
-    }
-
-    public int getindirectA() {
-        return indirectA;
-    }
-
-    //Get the id
-    public void setindirectA(int indirectA) {
-        this.indirectA = indirectA;
     }
 
     public int gettotalA() {
