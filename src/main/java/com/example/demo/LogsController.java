@@ -34,13 +34,8 @@ public class LogsController extends MainController implements Initializable {
     public Label updated2;
     @FXML
     public Label updated3;
-
-
     public LogsController() {
-
-
         this.fxml = "logs.fxml";
-//        timenow();
     }
 
     @Override
@@ -81,23 +76,4 @@ public class LogsController extends MainController implements Initializable {
         }
     }
 
-
-
-//    public void timenow(){
-//        Thread thread = new Thread(() -> {
-//            SimpleDateFormat sdf =  new SimpleDateFormat("HH:mm");
-//            while(true){
-//                try {
-//                    Thread.sleep(1000);
-//                }catch (Exception e){
-//                    System.out.println(e);
-//                }
-//                String timenow = sdf.format(new Date());
-//                Platform.runLater(() ->{
-//                    this.time1.setText(timenow);
-//                });
-//            }
-//        });
-//        thread.start();
-//    }
 }

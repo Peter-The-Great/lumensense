@@ -45,37 +45,23 @@ public class StatsController extends MainController implements Initializable {
     @FXML public TableView<Stats2> tableView1;
     @FXML public TableColumn<Stats, String> id;
     @FXML public TableColumn<Stats2, String> id1;
-
     @FXML public TableColumn<Stats, Date> date;
     @FXML public TableColumn<Stats2, Integer> totalA;
     @FXML public TableColumn<Stats, Integer> ta;
-
-
-
     @FXML public CategoryAxis  Xas;
     @FXML public NumberAxis Yas;
     @FXML public BarChart idBar;
-
-
     @FXML public Button refreshData;
     public Connection connection;
-
     public StatsController() {
         this.fxml = "stats.fxml";
-//        timenow();
     }
-
-
-
     //Make sure that the list of information is correctly displayed on the stats page
     ObservableList<Stats> listview = FXCollections.observableArrayList();
     ObservableList<Stats2> listview1 = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadDataStats();
-
-
-
     }
     //Load all the data into the stats.
     public void loadData(ActionEvent event) {
@@ -103,16 +89,12 @@ public class StatsController extends MainController implements Initializable {
                         result.getString("lamp_id"),
                         result.getInt("total_activations"),
                         result.getDate("date")
-
-
                 ));
             }
         } catch (Exception e){
             System.out.println("Database error: " + e.getMessage());
         }
-
         tableView.setItems(listview);
-
         try {
             ConnectionDB db1  = new ConnectionDB();
             ResultSet result1 = db1.getStats1();
@@ -128,7 +110,5 @@ public class StatsController extends MainController implements Initializable {
             System.out.println("Database error: " + e.getMessage());
         }
         tableView1.setItems(listview1);
-
     }
-
 }

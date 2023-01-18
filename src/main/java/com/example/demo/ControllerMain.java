@@ -46,13 +46,7 @@ public class ControllerMain {
         stage.show();
 
     }
-//    public void switchToTest(ActionEvent event) throws IOException {
-//        root = FXMLLoader.load(getClass().getResource("test.fxml"));
-//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
+
 
 
 

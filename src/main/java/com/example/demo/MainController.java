@@ -16,8 +16,6 @@ public class MainController {
     public Scene scene;
     public Parent root;
     String fxml = "login.fxml";
-
-
     //loads up the first screen which in our case is the login screen.
     public void load(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(this.fxml)));
@@ -26,7 +24,6 @@ public class MainController {
         stage.setScene(scene);
         stage.show();
     }
-
     //Switch to logs screen by clicking a button on screen.
     public void switchToLogs(ActionEvent event) throws IOException {
         LogsController logs = new LogsController();
@@ -37,7 +34,6 @@ public class MainController {
         StatusController status = new StatusController();
         status.load(event);
     }
-
     //Switch to stats screen by clicking a button on screen.
     public void switchToStats(ActionEvent event) throws IOException {
         StatsController stats = new StatsController();
