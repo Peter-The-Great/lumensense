@@ -1,5 +1,6 @@
 package LumenSerial.Model;
 
+//Response model with all necessary data and functions included
 public class Response {
     private String status  = null;
     private String message = null;

@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+//Log class which will log everything into the log displays.
 public class LogUtils {
+    //Get the logs and put them into a neatly made Arraylist
     public HashMap<String, String> getLogs() throws RuntimeException {
         HashMap<String, ArrayList<String>> logList = getLogsList();
         HashMap<String, String> logs = new HashMap<>();
@@ -24,6 +26,7 @@ public class LogUtils {
         return logs;
     }
 
+    //Get the log lists and then display.
     public HashMap<String, ArrayList<String>> getLogsList() throws RuntimeException{
         ArrayList<String> logLines = getLogFileLines();
 
@@ -44,6 +47,7 @@ public class LogUtils {
         return logs;
     }
 
+    //Get the lines from the log files and put them into the log screen.
     private ArrayList<String> getLogFileLines() throws RuntimeException {
         File logFile = getLogFileFromMicrobit();
         ArrayList<String> logFileLines = new ArrayList<>();
@@ -65,6 +69,7 @@ public class LogUtils {
 
     }
 
+    //Check the logfiles received from the microbit.
     private File getLogFileFromMicrobit() throws RuntimeException{
         File[] paths;
         FileSystemView fsv = FileSystemView.getFileSystemView();

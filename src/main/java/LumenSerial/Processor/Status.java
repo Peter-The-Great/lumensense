@@ -5,6 +5,7 @@ import LumenSerial.Constants.Messages;
 import LumenSerial.Model.Response;
 import LumenSerial.Parser.Parser;
 
+//Serial Status class
 public class Status extends Processor {
     private Parser parser;
 

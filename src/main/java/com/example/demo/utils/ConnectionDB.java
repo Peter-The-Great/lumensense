@@ -4,6 +4,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 
 import java.sql.*;
 
+//Class that connect the entire databse together.
 public class ConnectionDB {
 
     public Connection conn = null;

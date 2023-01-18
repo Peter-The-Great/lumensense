@@ -1,3 +1,4 @@
+// Load all the modules to be used in the project.
 module com.example.demo {
     requires javafx.controls;
     requires javafx.fxml;

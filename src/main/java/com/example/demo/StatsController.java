@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.model.Stats;
 import com.example.demo.utils.ConnectionDB;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -11,6 +12,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -35,6 +37,8 @@ public class StatsController extends MainController implements Initializable {
     public Parent root;
 
 
+    @FXML
+    private Label time;
     @FXML public TableView<Stats> tableView;
     @FXML public TableColumn<Stats, String> id;
     @FXML public TableColumn<Stats, String> id1;
@@ -67,9 +71,11 @@ public class StatsController extends MainController implements Initializable {
 
 
 
+    //Make sure that the list of information is correctly displayed on the stats page
     ObservableList<Stats> listview = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        timenow();
 
         System.out.println("test start testcontroller");
         //Tableview1
@@ -91,6 +97,7 @@ public class StatsController extends MainController implements Initializable {
 
 
 
+        //Make a query to get all the daily lamps where the date is today.
         try {
             ConnectionDB db = new ConnectionDB();
             Connection conn = db.conn;
@@ -127,8 +134,26 @@ public class StatsController extends MainController implements Initializable {
 
 
     }
+    //Load all the data into the stats.
     public void loadData(ActionEvent event) {
         tableView.refresh();
         tableView1.refresh();
+    }
+    public void timenow(){
+        Thread thread = new Thread(() -> {
+            SimpleDateFormat sdf =  new SimpleDateFormat("HH:mm");
+            while(true){
+                try {
+                    Thread.sleep(1000);
+                }catch (Exception e){
+                    System.out.println(e);
+                }
+                final String timenow = sdf.format(new Date());
+                Platform.runLater(() ->{
+                    this.time.setText(timenow);
+                });
+            }
+        });
+        thread.start();
     }
 }

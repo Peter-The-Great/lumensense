@@ -3,7 +3,9 @@ package LumenSerial.Parser;
 import LumenSerial.Model.Message;
 import LumenSerial.Model.Response;
 
+//A parser class that parses message through the application with data send via the microbit.
 public class Parser {
+    //This will parse a message into an array.
     public Message parseMessage(Response response) {
         if (response.getStatus().equals("200")) {
             String data    = (String) response.getData();
@@ -29,6 +31,7 @@ public class Parser {
         return null;
     }
 
+    //This will parse a response back to the application in an array.
     public Response parseResponse(Response response) {
         if (!response.getStatus().equals("200")) {
             return this.error(response.getMessage());
@@ -50,6 +53,7 @@ public class Parser {
         }
     }
 
+    //Checks if any of the Requests and Reponses have actually succeeded or not.
     public Response success(Object data) {
         return new Response("200", "OK", data);
     }

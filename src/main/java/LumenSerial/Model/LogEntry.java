@@ -2,6 +2,7 @@ package LumenSerial.Model;
 
 import java.util.Date;
 
+//Log entry model with all necessary data included
 public class LogEntry  {
     private Date time    = null;
     private String message = null;

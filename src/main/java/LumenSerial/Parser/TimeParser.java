@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+//A time parser that gets the time from the microbit.
 public class TimeParser extends Parser {
     public Response parse_time(Response response) {
         if (!response.getStatus().equals("200")) {
