@@ -5,6 +5,7 @@ import LumenSerial.Constants.Messages;
 import LumenSerial.Model.Response;
 import LumenSerial.Parser.TimeParser;
 
+//Serial Time class
 public class Time extends Processor {
     private TimeParser parser;
     public Time(Serial serial) {

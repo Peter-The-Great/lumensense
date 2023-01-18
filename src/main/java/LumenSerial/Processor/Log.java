@@ -3,6 +3,7 @@ package LumenSerial.Processor;
 import LumenSerial.Connector.Serial;
 import LumenSerial.Model.Response;
 
+//Serial Log class
 public class Log {
     private Serial serial;
 

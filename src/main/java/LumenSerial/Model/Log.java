@@ -1,5 +1,6 @@
 package LumenSerial.Model;
 
+//Log model with all necessary data included
 public class Log {
     private String type = null;
     private LogEntry[] entries = null;

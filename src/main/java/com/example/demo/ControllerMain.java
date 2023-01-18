@@ -19,6 +19,7 @@ public class ControllerMain {
     public Scene scene;
     public Parent root;
 
+    //Switch to status screen by clicking a button on screen. Or after completing the login.
     public void switchToLight(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Main.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -27,6 +28,7 @@ public class ControllerMain {
         stage.show();
     }
 
+    //Switch to stats screen by clicking a button on screen.
     public void switchToStats(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("stats.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -35,6 +37,7 @@ public class ControllerMain {
         stage.show();
     }
 
+    //Switch to logs screen by clicking a button on screen.
     public void switchToLogs(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("logs.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -5,6 +5,7 @@ import LumenSerial.Constants.Messages;
 import LumenSerial.Model.Response;
 import LumenSerial.Parser.Parser;
 
+//
 public class Activators extends Processor {
     private Parser parser;
     public Activators(Serial serial) {

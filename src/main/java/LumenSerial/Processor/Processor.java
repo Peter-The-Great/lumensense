@@ -5,6 +5,7 @@ import LumenSerial.Model.Response;
 
 import java.util.Queue;
 
+//Serial Processor class that awaits any response from the microbit.
 public class Processor {
     private Serial serial;
     private boolean waitingForResponse = false;
@@ -66,6 +67,7 @@ public class Processor {
         return new Response("500", "ERROR", "No response from device");
     }
 
+    //Make sure that all strings don't get Escape stringed, so that all the information gets through.
     public static String unEscapeString(String s){
         StringBuilder sb = new StringBuilder();
         for (int i=0; i<s.length(); i++)

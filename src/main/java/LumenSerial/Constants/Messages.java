@@ -2,6 +2,8 @@ package LumenSerial.Constants;
 
 import java.text.SimpleDateFormat;
 
+//Messages is a class that returns or sets many pieces of data. Like Time, UUIDs, Activators. And posts them back to the application.
+//So that it can be transported to the database later.
 public class Messages {
     public static String GetTime() {
         return Get( "TIME");

@@ -4,6 +4,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 
 import java.sql.*;
 
+//Class that connect the entire databse together.
 public class ConnectionDB {
 
     public Connection conn = null;
@@ -28,6 +29,33 @@ public class ConnectionDB {
     public ResultSet getStatus() {
         try {
             PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM lamp where lamp_id in ('BLACK', 'GREEN','YELLOW','RED')");
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.printf("SQL - Error: " + e.getMessage());
+        }
+        return null;
+    }
+    public ResultSet getStats() {
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM daily_lamp WHERE date = CURDATE() and lamp_id in ('BLACK', 'GREEN','YELLOW','RED') ");
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.printf("SQL - Error: " + e.getMessage());
+        }
+        return null;
+    }
+    public ResultSet getStats1() {
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT lamp_id, sum(total_activations) AS total_activations FROM daily_lamp WHERE lamp_id in ('GREEN', 'YELLOW', 'BLACK', 'RED') group by lamp_id");
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            System.out.printf("SQL - Error: " + e.getMessage());
+        }
+        return null;
+    }
+    public ResultSet getLogs() {
+        try {
+            PreparedStatement stmt = this.conn.prepareStatement("SELECT * FROM log");
             return stmt.executeQuery();
         } catch (SQLException e) {
             System.out.printf("SQL - Error: " + e.getMessage());
