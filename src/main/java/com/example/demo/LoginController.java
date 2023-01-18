@@ -23,7 +23,6 @@ public class LoginController extends MainController {
     //Load in the FXML file we are trying to use to login.
     public LoginController() {
         this.fxml = "login.fxml";
-//        timenow();
     }
 
     //This is a login function which checks if we have filled something in the input prompts, then it will check if our username and password is correct,

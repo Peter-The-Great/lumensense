@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 //The main controller in the entire program.
@@ -16,8 +17,13 @@ public class MainController {
     public Scene scene;
     public Parent root;
     String fxml = "login.fxml";
+
+    public ArrayList<Thread> runningThreads = new ArrayList<Thread>();
     //loads up the first screen which in our case is the login screen.
     public void load(ActionEvent event) throws IOException {
+        for (Thread thread: this.runningThreads) {
+            thread.interrupt();
+        }
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(this.fxml)));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -26,6 +32,7 @@ public class MainController {
     }
     //Switch to logs screen by clicking a button on screen.
     public void switchToLogs(ActionEvent event) throws IOException {
+        System.out.println("Switching to logs");
         LogsController logs = new LogsController();
         logs.load(event);
     }

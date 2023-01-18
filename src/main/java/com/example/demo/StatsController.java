@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -50,7 +51,6 @@ public class StatsController extends MainController implements Initializable {
     @FXML public TableColumn<Stats, Integer> ta;
     @FXML public CategoryAxis  Xas;
     @FXML public NumberAxis Yas;
-    @FXML public BarChart idBar;
     @FXML public Button refreshData;
     public Connection connection;
     public StatsController() {
@@ -61,16 +61,28 @@ public class StatsController extends MainController implements Initializable {
     ObservableList<Stats2> listview1 = FXCollections.observableArrayList();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("test start testcontroller");
         loadDataStats();
+
+        Thread thread = new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(1000);
+                    loadDataStats();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        this.runningThreads.add(thread);
     }
     //Load all the data into the stats.
     public void loadData(ActionEvent event) {
-        listview.clear();
-        listview1.clear();
         loadDataStats();
     }
     public void loadDataStats(){
-        System.out.println("test start testcontroller");
         //Tableview1
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         ta.setCellValueFactory(new PropertyValueFactory<>("ta"));
@@ -83,14 +95,22 @@ public class StatsController extends MainController implements Initializable {
             ConnectionDB db  = new ConnectionDB();
             ResultSet result = db.getStats();
 
+            Stats[] stats = new Stats[4];
+            int index = 0;
             while (result.next()){
-                System.out.println(result);
-                listview.add(new Stats(
+                stats[index] = new Stats(
                         result.getString("lamp_id"),
                         result.getInt("total_activations"),
                         result.getDate("date")
-                ));
+                );
+                index++;
+//                listview.add(new Stats(
+//                        result.getString("lamp_id"),
+//                        result.getInt("total_activations"),
+//                        result.getDate("date")
+//                ));
             }
+            listview.setAll(stats);
         } catch (Exception e){
             System.out.println("Database error: " + e.getMessage());
         }
@@ -99,13 +119,16 @@ public class StatsController extends MainController implements Initializable {
             ConnectionDB db1  = new ConnectionDB();
             ResultSet result1 = db1.getStats1();
 
+            Stats2[] stats2 = new Stats2[4];
+            int index = 0;
             while (result1.next()){
-                System.out.println(result1);
-                listview1.add(new Stats2(
+                stats2[index] = new Stats2(
                         result1.getString("lamp_id"),
                         result1.getInt("total_activations")
-                ));
+                );
+                index++;
             }
+            listview1.setAll(stats2);
         } catch (Exception e){
             System.out.println("Database error: " + e.getMessage());
         }

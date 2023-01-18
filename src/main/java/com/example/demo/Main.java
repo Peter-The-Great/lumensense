@@ -44,7 +44,7 @@ public class Main extends Application {
             while (true) {
                 try {
                     Thread.sleep(1000);
-                    updater.updateFast();
+                    updater.updateFast(false);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     e.printStackTrace();
@@ -56,7 +56,7 @@ public class Main extends Application {
             while (true) {
                 try {
                     Thread.sleep(10000);
-                    updater.updateSlow();
+                    updater.updateSlow(false);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     e.printStackTrace();

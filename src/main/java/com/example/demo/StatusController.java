@@ -2,31 +2,20 @@ package com.example.demo;
 
 import com.example.demo.utils.ConnectionDB;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Objects;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 // This is the status controller with all the labels we need to change when the application is running.
@@ -64,36 +53,42 @@ public class StatusController extends MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         dataRefresher();
 
-        new Thread(() -> {
+        Thread thread = new Thread(() -> {
             while (true) {
                 try {
                     Thread.sleep(1000);
                     dataRefresher();
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    e.printStackTrace();
+                    System.out.println("Error - " + e.getMessage());
                 }
             }
-        }).start();
+        });
+        thread.start();
+        this.runningThreads.add(thread);
     }
     public void dataRefresher(){
-        System.out.println("test start testcontroller");
-
         try {
-
             ConnectionDB db  = new ConnectionDB();
             ResultSet result = db.getStatus();
 
-            Label[] ids      = new Label[]{this.ID1, this.id2, this.id3, this.id4};
+            Label[] ids      = new Label[]{this.ID1, this.id4, this.id3, this.id2};
             Label[] statuses = new Label[]{this.status1, this.status2, this.status3, this.status4};
 
             //If you get a result from the database fill it with the lampids and statuses. Until you have got them all.
             int index = 0;
             while (result.next()){
-                System.out.println(result);
-
                 String lamp_id = result.getString("lamp_id");
-                ids[index].setText(lamp_id);
+                String status = result.getString("status");
+
+                int finalIndex = index;
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        ids[finalIndex].setText(lamp_id);
+                        statuses[finalIndex].setText(status);
+                    }
+                });
+
                 if (lamp_id.equals("RED")){
                     ids[index].setTextFill(Color.RED);
                 } else if (lamp_id.equals("GREEN")) {
@@ -105,9 +100,7 @@ public class StatusController extends MainController implements Initializable {
                 }else {
                     ids[index].setTextFill(Color.BLACK);
                 }
-                String status = result.getString("status");
-                statuses[index].setText(status);
-                System.out.println(status);
+
                 if (status.equals("ON")){
                     statuses[index].setTextFill(Color.LIMEGREEN);
                 }else {

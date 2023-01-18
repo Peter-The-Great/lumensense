@@ -23,33 +23,37 @@ public class Updater {
     }
 
     //Choose the fast update if there are more than 4 errors.
-    public void updateFast() {
+    public void updateFast(boolean debug) {
         if (this.errors > 4) {
             this.lumenBit.disconnect();
             this.errors = 0;
         }
         if (this.lumenBit.isConnected()) {
-            this.errors += this.updateStatus();
-            this.errors += this.updateActivations();
+            this.errors += this.updateStatus(debug);
+            this.errors += this.updateActivations(debug);
         } else {
-            System.out.println("No connection to device");
+            if (debug) {
+                System.out.println("No connection to device");
+            }
             this.lumenBit.connect();
         }
     }
 
     //Choose the fast update if there are few errors.
-    public void updateSlow() {
+    public void updateSlow(boolean debug) {
         if (this.lumenBit.isConnected()) {
             this.updateTime();
-            this.updateLogs();
+            this.updateLogs(debug);
         } else {
-            System.out.println("No connection to device");
+            if (debug) {
+                System.out.println("No connection to device");
+            }
             this.lumenBit.connect();
         }
     }
 
     //Updates the status given from the microbit to the database
-    public int updateStatus() {
+    public int updateStatus(boolean debug) {
         Response response = this.lumenBit.status.read();
 
         if (response.getStatus().equals("200")) {
@@ -60,17 +64,21 @@ public class Updater {
                 String lampId = statusSplit[0];
                 String status = statusSplit[1].equals("1") ? "ON" : "OFF";
                 boolean result = this.db.updateLampStatus(status, lampId);
-                System.out.println("Update status: " + lampId + " = " + status);
+                if (debug) {
+                    System.out.println("Update status: " + lampId + " = " + status);
+                }
             }
             return 0;
         } else {
-            System.out.println("Update status failed, incorrect response: " + response.getMessage() + ", data: " + response.getData());
+            if (debug) {
+                System.out.println("Update status failed, incorrect response: " + response.getMessage() + ", data: " + response.getData());
+            }
             return 1;
         }
     }
 
     //Updates the activations given from the microbit to the database
-    public int updateActivations() {
+    public int updateActivations(boolean debug) {
         Response response = this.lumenBit.activations.read();
 
         if (response.getStatus().equals("200")) {
@@ -80,28 +88,36 @@ public class Updater {
                 String   lamp_id     = lampActivationSplit[0];
                 String   activations = lampActivationSplit[1];
 
-                System.out.println("Update activations: " + lamp_id + " = " + activations);
+                if (debug) {
+                    System.out.println("Update activations: " + lamp_id + " = " + activations);
+                }
 
                 boolean result = this.db.updateActivations(lamp_id, activations);
             }
             return 0;
         } else {
-            System.out.println("Update activations failed, incorrect response: " + response.getMessage() + ", data: " + response.getData());
+            if (debug){
+                System.out.println("Update activations failed, incorrect response: " + response.getMessage() + ", data: " + response.getData());
+            }
             return 1;
         }
     }
 
     //Updates the logs given from the microbit to the database
-    public void updateLogs() {
+    public void updateLogs(boolean debug) {
         try {
             HashMap<String, String> logs = this.logUtils.getLogs();
             for (String type : logs.keySet()) {
                 String content = logs.get(type);
                 boolean result = this.db.updateLog(content, type);
-                System.out.printf("Update log (%s): %s\n", type, (result ? "success" : "failed") );
+                if (debug) {
+                    System.out.printf("Update log (%s): %s\n", type, (result ? "success" : "failed"));
+                }
             }
         } catch (RuntimeException e) {
-            System.out.println("Update logs failed: " + e.getMessage() );
+            if (debug) {
+                System.out.println("Update logs failed: " + e.getMessage());
+            }
         }
     }
 
