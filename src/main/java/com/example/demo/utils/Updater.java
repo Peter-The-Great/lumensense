@@ -49,12 +49,13 @@ public class Updater {
 
         if (response.getStatus().equals("200")) {
             String lamps = (String) response.getData();
+            System.out.println("Update status micro response: " + lamps + " - " + response.getMessage());
             for (String lamp : lamps.split(",")) {
                 String[] statusSplit = lamp.split("=");
                 String lampId = statusSplit[0];
                 String status = statusSplit[1].equals("1") ? "ON" : "OFF";
                 boolean result = this.db.updateLampStatus(status, lampId);
-                System.out.println("Update status: " + (result ? "success" : "failed") );
+                System.out.println("Update status: " + lampId + " = " + status);
             }
             return 0;
         } else {
@@ -70,14 +71,12 @@ public class Updater {
             String lampsActivations = (String) response.getData();
             for (String lampActivation : lampsActivations.split(",")) {
                 String[] lampActivationSplit = lampActivation.split("=");
-                String   lamp_id = lampActivationSplit[0];
+                String   lamp_id     = lampActivationSplit[0];
+                String   activations = lampActivationSplit[1];
 
-                String[] activationSplit = lampActivationSplit[1].split("\\|");
-                String   directs         = activationSplit[0];
-                String   indirects       = activationSplit[1];
+                System.out.println("Update activations: " + lamp_id + " = " + activations);
 
-                boolean result = this.db.updateActivations(lamp_id, directs, indirects);
-                System.out.println("Update activation: " + (result ? "success" : "failed"));
+                boolean result = this.db.updateActivations(lamp_id, activations);
             }
             return 0;
         } else {

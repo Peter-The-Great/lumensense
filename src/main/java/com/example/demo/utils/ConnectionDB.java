@@ -88,7 +88,7 @@ public class ConnectionDB {
         return false;
     }
 
-    public boolean updateActivations(String lamp_id, String directs, String indirects) {
+    public boolean updateActivations(String lamp_id, String activations) {
 
         try {
             // check if daily_lamp exists for lamp_id
@@ -98,15 +98,14 @@ public class ConnectionDB {
 
             if (rs.next()) {
                 // update log
-                stmt = this.conn.prepareStatement("UPDATE daily_lamp SET direct_activations = ?, indirect_activations = ? WHERE lamp_id = ? AND date = CURDATE()");
+                stmt = this.conn.prepareStatement("UPDATE daily_lamp SET total_activations = total_activations + ? WHERE lamp_id = ? AND date = CURDATE()");
             } else {
                 // insert log
-                stmt = this.conn.prepareStatement("INSERT INTO daily_lamp (direct_activations, indirect_activations, lamp_id, date) VALUES (?, ?, ?, CURDATE())");
+                stmt = this.conn.prepareStatement("INSERT INTO daily_lamp (total_activations, lamp_id, date) VALUES (?, ?, CURDATE())");
             }
 
-            stmt.setString(1, directs);
-            stmt.setString(2, indirects);
-            stmt.setString(3, lamp_id);
+            stmt.setString(1, activations);
+            stmt.setString(2, lamp_id);
 
             stmt.executeUpdate();
 

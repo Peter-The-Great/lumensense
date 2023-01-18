@@ -1,5 +1,5 @@
 package com.example.demo;
-//import com.example.demo.utils.Updater;
+import com.example.demo.utils.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
@@ -30,9 +30,38 @@ public class Main extends Application {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
+
+            this.startUpdaterThreads();
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void startUpdaterThreads() {
+        Updater updater = new Updater();
+        new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(1000);
+                    updater.updateFast();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(10000);
+                    updater.updateSlow();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
 
