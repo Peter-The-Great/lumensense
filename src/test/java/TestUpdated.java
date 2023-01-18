@@ -7,7 +7,7 @@ public class TestUpdated {
             while (true) {
                 try {
                     Thread.sleep(1000);
-                    updater.updateFast();
+                    updater.updateFast(true);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     e.printStackTrace();
@@ -19,7 +19,7 @@ public class TestUpdated {
             while (true) {
                 try {
                     Thread.sleep(10000);
-                    updater.updateSlow();
+                    updater.updateSlow(true);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     e.printStackTrace();
